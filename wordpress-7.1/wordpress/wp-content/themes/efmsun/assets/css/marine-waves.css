@@ -1,0 +1,95 @@
+:root {
+  --marine-wave-z: 1;
+  --marine-wave-height: clamp(220px, 38vw, 560px);
+  --marine-wave-opacity: 0.92;
+}
+
+.marine-waves {
+  position: fixed;
+  z-index: var(--marine-wave-z);
+  inset: auto 0 0;
+  height: var(--marine-wave-height);
+  overflow: visible;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.marine-waves__layer {
+  position: absolute;
+  left: -10vw;
+  bottom: -1px;
+  width: 120vw;
+  max-width: none;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+.marine-waves__layer--back {
+  z-index: 1;
+  bottom: clamp(22px, 2.8vw, 48px);
+  opacity: 0.48;
+  filter: saturate(0.82) blur(0.25px);
+  animation: marine-wave-back 15s ease-in-out infinite alternate;
+}
+
+.marine-waves__layer--front {
+  z-index: 2;
+  opacity: var(--marine-wave-opacity);
+  animation: marine-wave-front 10s ease-in-out infinite alternate;
+}
+
+@keyframes marine-wave-back {
+  0% {
+    transform: translate3d(-1.5vw, 10px, 0) scale(1.025, 0.98);
+  }
+  50% {
+    transform: translate3d(1vw, -5px, 0) scale(1.04, 1.025);
+  }
+  100% {
+    transform: translate3d(2.2vw, 4px, 0) scale(1.02, 1);
+  }
+}
+
+@keyframes marine-wave-front {
+  0% {
+    transform: translate3d(2vw, 14px, 0) scale(1.035, 0.97);
+  }
+  48% {
+    transform: translate3d(-0.8vw, -8px, 0) scale(1.055, 1.035);
+  }
+  100% {
+    transform: translate3d(-2.4vw, 5px, 0) scale(1.025, 1);
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --marine-wave-height: clamp(200px, 68vw, 420px);
+    --marine-wave-opacity: 0.9;
+  }
+
+  .marine-waves__layer {
+    left: -35vw;
+    width: 170vw;
+  }
+
+  .marine-waves__layer--back {
+    bottom: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marine-waves__layer {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media print {
+  .marine-waves {
+    display: none;
+  }
+}

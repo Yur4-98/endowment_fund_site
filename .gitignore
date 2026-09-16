@@ -1,0 +1,22 @@
+# Секреты и локальная среда WordPress
+**/wp-config.php
+**/wp-config-docker.php
+**/.htaccess
+**/wp-content/uploads/
+**/wp-content/upgrade/
+**/wp-content/cache/
+
+# Материалы заказчика — только локально
+docs/
+
+# Слишком большие файлы (лимит GitHub — 100 МБ)
+*.vdw
+
+# Служебное
+*.log
+*.tmp
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
