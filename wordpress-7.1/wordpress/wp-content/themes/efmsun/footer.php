@@ -24,6 +24,10 @@
 					'depth'          => 1,
 				) );
 				?>
+				<p class="footer-extra">
+					<a href="<?php echo esc_url( efmsun_page_url( 'faq' ) ); ?>">FAQ</a>
+					<a href="<?php echo esc_url( efmsun_page_url( 'dokumenty' ) ); ?>">Документы</a>
+				</p>
 			</div>
 			<div>
 				<p class="footer-label">Контакты</p>
@@ -33,8 +37,9 @@
 					<?php echo esc_html( get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' ) ); ?>
 				</p>
 				<p class="footer-legal">
-					<a href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">Оферта</a>
 					<a href="<?php echo esc_url( efmsun_page_url( 'politika-pd' ) ); ?>">Политика ПД</a>
+					<a href="<?php echo esc_url( efmsun_page_url( 'politika-pozhertvovaniy' ) ); ?>">Политика пожертвований</a>
+					<a href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">Оферта</a>
 				</p>
 			</div>
 		</div>

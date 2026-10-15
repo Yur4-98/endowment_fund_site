@@ -32,7 +32,13 @@ get_header();
 				</article>
 			<?php endwhile; ?>
 			<div class="pagination">
-				<?php the_posts_pagination(); ?>
+				<?php
+				the_posts_pagination( array(
+					'prev_text'          => 'Назад',
+					'next_text'          => 'Вперёд',
+					'screen_reader_text' => 'Страницы',
+				) );
+				?>
 			</div>
 		<?php else : ?>
 			<p>Новостей пока нет.</p>

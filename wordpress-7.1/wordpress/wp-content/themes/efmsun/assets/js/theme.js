@@ -40,12 +40,12 @@
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var targets = document.querySelectorAll(
-      ".hero-copy, .hero-aside, .section-head, .card, .news-lead, .news-mini, .report-row, .donate-form, .donate-layout > aside, .contact-grid > .card, .page-hero .container"
+      ".hero-copy, .hero-aside, .section-head, .card, .news-lead, .news-mini, .report-row, .donate-form, .donate-layout > aside, .contact-grid > .card, .page-hero .container, .metric-card, .faq-item, .timeline li, .split-block > div"
     );
     targets.forEach(function (el) {
       el.classList.add("reveal");
     });
-    document.querySelectorAll(".card-grid, .news-layout, .news-side, .contact-grid, .donate-layout, .report-list").forEach(function (group) {
+    document.querySelectorAll(".card-grid, .news-layout, .news-side, .contact-grid, .donate-layout, .report-list, .faq-list, .split-block").forEach(function (group) {
       Array.prototype.forEach.call(group.querySelectorAll(":scope > .reveal"), function (el, i) {
         el.style.transitionDelay = i * 90 + "ms";
       });
@@ -81,4 +81,33 @@
       );
     }
   }
+
+  document.querySelectorAll(".type-grid").forEach(function (group) {
+    group.addEventListener("click", function (event) {
+      var label = event.target.closest(".type-btn");
+      if (!label || label.classList.contains("is-disabled")) {
+        return;
+      }
+      group.querySelectorAll(".type-btn").forEach(function (item) {
+        item.classList.remove("is-active");
+      });
+      label.classList.add("is-active");
+    });
+  });
+
+  document.querySelectorAll("[data-copy]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var text = button.getAttribute("data-copy") || "";
+      var label = button.getAttribute("data-label") || "Копировать";
+      if (!text || !navigator.clipboard) {
+        return;
+      }
+      navigator.clipboard.writeText(text).then(function () {
+        button.textContent = "Скопировано";
+        window.setTimeout(function () {
+          button.textContent = label;
+        }, 1600);
+      });
+    });
+  });
 })();

@@ -6,65 +6,43 @@
  */
 
 get_header();
+
+$campaign_id = efmsun_leyka_campaign_id();
+$leyka_ready = efmsun_leyka_active() && $campaign_id;
 ?>
 
 <section class="page-hero">
 	<div class="container">
 		<p class="eyebrow">Пожертвование</p>
 		<h1>Сделать вклад в целевой капитал</h1>
-		<p class="page-lead">Средства идут в общий капитал фонда, не на отдельный проект. Оплата картой через Сбер будет подключена после доступов банка.</p>
+		<p class="page-lead">Средства идут в общий капитал фонда, не на отдельный проект. Онлайн-оплата картой через Сбер подключается в Лейке, когда банк выдаст логин и пароль API.</p>
 	</div>
 </section>
 
 <section class="section">
 	<div class="container donate-layout">
-		<form class="donate-form" method="get" action="<?php echo esc_url( efmsun_donate_url() ); ?>">
-			<p class="footer-label">Сумма, ₽</p>
-			<div class="amount-grid" data-amounts>
-				<?php foreach ( array( 500, 1000, 3000, 5000, 10000 ) as $amount ) : ?>
-					<button class="amount-btn<?php echo 1000 === $amount ? ' is-active' : ''; ?>" type="button" data-amount="<?php echo esc_attr( (string) $amount ); ?>"><?php echo esc_html( number_format( $amount, 0, '', ' ' ) ); ?> ₽</button>
-				<?php endforeach; ?>
+		<?php if ( $leyka_ready ) : ?>
+			<div class="leyka-form-wrap">
+				<?php echo do_shortcode( '[leyka_campaign_form id="' . (int) $campaign_id . '"]' ); ?>
 			</div>
-			<label class="field">
-				<span>Своя сумма</span>
-				<input type="number" name="amount" min="100" step="100" value="1000" data-amount-input>
-			</label>
-
-			<p class="footer-label">Тип пожертвования</p>
-			<div class="type-grid">
-				<label class="type-btn is-active">
-					<input type="radio" name="kind" value="once" checked>
-					<span>Разовое</span>
-				</label>
-				<label class="type-btn is-disabled">
-					<input type="radio" name="kind" value="monthly" disabled>
-					<span>Ежемесячное</span>
-					<small>После подтверждения автоплатежей Сбером</small>
-				</label>
-			</div>
-
-			<label class="check">
-				<input type="checkbox" required>
-				<span>Согласен с <a href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">офертой</a></span>
-			</label>
-			<label class="check">
-				<input type="checkbox" required>
-				<span>Согласен с <a href="<?php echo esc_url( efmsun_page_url( 'politika-pd' ) ); ?>">политикой обработки ПД</a></span>
-			</label>
-
-			<button class="btn btn-primary btn-block" type="submit" disabled>Перейти к оплате</button>
-			<p class="form-note">Кнопка станет активной, когда подключим эквайринг. Карту сайт не собирает — оплата на стороне Сбера.</p>
-		</form>
+		<?php else : ?>
+			<form class="donate-form" method="get" action="<?php echo esc_url( efmsun_donate_url() ); ?>">
+				<p class="form-note">Плагин Leyka ещё не настроен. Активируйте его и обновите страницу — появится форма пожертвования.</p>
+				<button class="btn btn-primary btn-block" type="submit" disabled>Перейти к оплате</button>
+			</form>
+		<?php endif; ?>
 
 		<aside class="card card-plain">
 			<h2>Как это проходит</h2>
 			<ol class="steps">
 				<li>Выбираете сумму</li>
 				<li>Соглашаетесь с офертой и политикой ПД</li>
-				<li>Оплачиваете на странице Сбера</li>
+				<li>Оплачиваете картой Сбера или печатаете банковскую квитанцию</li>
 				<li>После зачисления придёт письмо-благодарность</li>
 			</ol>
-			<p>Личный кабинет можно создать по желанию — платить без регистрации можно.</p>
+			<p>Карту сайт не собирает: реквизиты вводит Сбер. Квитанцию можно оплатить в любом банке по реквизитам фонда.</p>
+			<p>Ежемесячный платёж включится после автоплатежей Сбера и cron на хостинге.</p>
+			<p><a class="text-link" href="<?php echo esc_url( efmsun_help_url() ); ?>">Другие способы помочь</a></p>
 		</aside>
 	</div>
 </section>

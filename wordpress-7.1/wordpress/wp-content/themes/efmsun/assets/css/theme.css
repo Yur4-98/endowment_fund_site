@@ -137,7 +137,7 @@ h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
 .brand-name { font-size: 1.15rem; }
 .brand-sub { font-size: 0.78rem; color: rgba(255, 255, 255, 0.72); }
 
-.site-nav { gap: 22px; }
+.site-nav { gap: 16px; }
 
 .menu {
   display: flex;
@@ -228,7 +228,8 @@ h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
 .donate-layout,
 .contact-grid,
 .news-layout,
-.footer-grid {
+.footer-grid,
+.split-block {
   display: grid;
   gap: 32px;
 }
@@ -419,9 +420,121 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 .type-btn small { font-weight: 400; color: var(--muted); }
 
 .field { display: grid; gap: 6px; margin-bottom: 18px; }
-.field input { padding: 0 12px; }
+.field input,
+.field textarea { padding: 10px 12px; width: 100%; border: 1px solid var(--line); border-radius: 12px; font: 500 0.95rem Manrope, sans-serif; }
 .check { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0; }
 .steps { padding-left: 18px; }
+
+.form-ok,
+.form-error {
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.form-ok { background: #e8f6ee; }
+.form-error { background: #fdecea; }
+
+.breadcrumbs {
+  background: rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  margin-left: 10px;
+  color: var(--muted);
+}
+.breadcrumbs a { color: var(--navy); text-decoration: none; }
+
+.header-search {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.header-search input {
+  width: 140px;
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 12px;
+}
+.header-search input::placeholder { color: rgba(255, 255, 255, 0.6); }
+.header-search-btn {
+  min-height: 38px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  cursor: pointer;
+}
+
+.metric-value {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 4px;
+}
+.metric-updated { color: var(--muted); margin: 0; }
+.split-block { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+
+.requisites { display: grid; grid-template-columns: 160px 1fr; gap: 8px 16px; }
+.requisites dt { color: var(--muted); }
+.requisites dd { margin: 0; }
+
+.faq-list { display: grid; gap: 10px; margin: 0 0 28px; }
+.faq-item {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+.faq-item summary { cursor: pointer; font-weight: 700; }
+.faq-item div { color: var(--muted); padding-top: 10px; }
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+.timeline li {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.copy-btn {
+  margin-left: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  font: 600 0.85rem Manrope, sans-serif;
+  cursor: pointer;
+}
+
+.search-page-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  max-width: 640px;
+}
+.search-page-form .field { flex: 1; margin: 0; }
+
+.footer-extra { display: flex; gap: 16px; margin-top: 12px; }
+.footer-legal { flex-wrap: wrap; }
 
 .site-footer {
   color: rgba(255, 255, 255, 0.8);
@@ -466,7 +579,9 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
   .news-layout,
   .donate-layout,
   .footer-grid,
-  .contact-grid { grid-template-columns: 1fr; }
+  .contact-grid,
+  .split-block,
+  .requisites { grid-template-columns: 1fr; }
 
   .nav-toggle { display: block; }
 
@@ -482,6 +597,8 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 
   .site-nav.is-open { display: flex; }
   .menu { flex-direction: column; }
+  .header-search { width: 100%; }
+  .header-search input { width: 100%; }
   .amount-grid { grid-template-columns: repeat(2, 1fr); }
   .report-row { flex-direction: column; align-items: flex-start; }
 }
@@ -489,6 +606,15 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 @media (orientation: landscape) and (max-height: 520px) {
   .hero { padding-top: 28px; }
   .donate-float { right: 12px; bottom: 12px; }
+}
+
+.leyka-form-wrap {
+  min-width: 0;
+}
+.leyka-form-wrap .leyka-star-form,
+.leyka-form-wrap .star-form,
+.leyka-form-wrap form {
+  font-family: Manrope, "Segoe UI", sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {

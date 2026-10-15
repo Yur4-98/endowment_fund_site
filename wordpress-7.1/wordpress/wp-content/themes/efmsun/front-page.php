@@ -1,6 +1,6 @@
 <?php
 /**
- * Главная по структуре 7 сентября.
+ * Главная по ТЗ: герой, цифры, о фонде, направления, проекты, новости, документы, как помочь.
  *
  * @package efmsun
  */
@@ -13,6 +13,12 @@ $text  = get_theme_mod( 'efmsun_hero_text', 'Фонд целевого капи�
 $quote = get_theme_mod( 'efmsun_quote', 'Больше, чем образование — это люди, которые ведут к новым горизонтам' );
 $qr    = get_theme_mod( 'efmsun_qr_image', '' );
 $req   = get_theme_mod( 'efmsun_requisites', '' );
+
+$metrics = array(
+	array( 'Поступления', get_theme_mod( 'efmsun_metric_in', '—' ) ),
+	array( 'Дарители', get_theme_mod( 'efmsun_metric_donors', '—' ) ),
+	array( 'Передано университету', get_theme_mod( 'efmsun_metric_uni', '—' ) ),
+);
 
 $directions = array(
 	array( 'Поддержка преподавателей-ветеранов', 'Забота о тех, кто заложил традиции морского образования' ),
@@ -31,6 +37,12 @@ $news = new WP_Query( array(
 	'posts_per_page' => 3,
 	'post_status'    => 'publish',
 ) );
+
+$docs = new WP_Query( array(
+	'post_type'      => array( 'efmsun_document', 'efmsun_report' ),
+	'posts_per_page' => 4,
+	'post_status'    => 'publish',
+) );
 ?>
 
 <section class="hero">
@@ -43,8 +55,8 @@ $news = new WP_Query( array(
 			<p class="hero-text"><?php echo esc_html( $text ); ?></p>
 			<blockquote class="hero-quote"><?php echo esc_html( $quote ); ?></blockquote>
 			<div class="hero-actions">
-				<a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Сделать пожертвование</a>
-				<a class="btn btn-ghost" href="<?php echo esc_url( efmsun_page_url( 'stat-daritelem' ) ); ?>">Стать дарителем</a>
+				<a class="btn btn-primary" href="<?php echo esc_url( efmsun_help_url() ); ?>">Поддержать фонд</a>
+				<a class="btn btn-ghost" href="<?php echo esc_url( efmsun_page_url( 'o-fonde' ) ); ?>">О фонде</a>
 			</div>
 		</div>
 
@@ -65,10 +77,43 @@ $news = new WP_Query( array(
 				<?php if ( $req ) : ?>
 					<a class="btn btn-line" href="<?php echo esc_url( $req ); ?>">Скачать реквизиты</a>
 				<?php else : ?>
-					<span class="btn btn-line is-disabled">Скачать реквизиты</span>
+					<a class="btn btn-line" href="<?php echo esc_url( efmsun_help_url() ); ?>">Реквизиты фонда</a>
 				<?php endif; ?>
 			</div>
 		</aside>
+	</div>
+</section>
+
+<section class="section metrics">
+	<div class="container">
+		<div class="section-head">
+			<p class="eyebrow">Показатели фонда</p>
+			<h2>Цифры, которые можно править в админке</h2>
+			<p class="metric-updated">Актуализация: <?php echo esc_html( get_theme_mod( 'efmsun_metric_updated', 'данные уточняются' ) ); ?></p>
+		</div>
+		<div class="card-grid card-grid-3">
+			<?php foreach ( $metrics as $item ) : ?>
+				<article class="card card-plain metric-card">
+					<p class="metric-value"><?php echo esc_html( $item[1] ); ?></p>
+					<h3><?php echo esc_html( $item[0] ); ?></h3>
+				</article>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+
+<section class="section about-teaser">
+	<div class="container split-block">
+		<div>
+			<p class="eyebrow">О фонде</p>
+			<h2>Самостоятельный фонд целевого капитала университета</h2>
+			<p>Фонд создан, чтобы поддерживать МГУ имени адмирала Г.И. Невельского не разовыми акциями, а доходом от сохранённого капитала. Действует по 275-ФЗ.</p>
+			<p><a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'o-fonde' ) ); ?>">Подробнее о фонде</a></p>
+		</div>
+		<div class="card card-plain">
+			<h3>Как это работает</h3>
+			<p>Пожертвование пополняет целевой капитал. Капитал сохраняется, доход идёт на образование, науку и людей университета.</p>
+		</div>
 	</div>
 </section>
 
@@ -77,7 +122,7 @@ $news = new WP_Query( array(
 		<div class="section-head">
 			<p class="eyebrow">На что работает ваш вклад</p>
 			<h2>Направления финансирования</h2>
-			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'napravleniya' ) ); ?>">Смотреть направления</a>
+			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'napravleniya' ) ); ?>">Все направления</a>
 		</div>
 		<div class="card-grid card-grid-3">
 			<?php foreach ( $directions as $item ) : ?>
@@ -152,6 +197,84 @@ $news = new WP_Query( array(
 				</div>
 			</div>
 		<?php endif; ?>
+	</div>
+</section>
+
+<section class="section docs-teaser">
+	<div class="container">
+		<div class="section-head">
+			<p class="eyebrow">Прозрачность</p>
+			<h2>Документы и отчётность</h2>
+			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'dokumenty' ) ); ?>">Все документы</a>
+		</div>
+		<div class="report-list">
+			<?php if ( $docs->have_posts() ) : ?>
+				<?php
+				while ( $docs->have_posts() ) :
+					$docs->the_post();
+					$file = get_post_meta( get_the_ID(), 'efmsun_file_url', true );
+					?>
+					<article class="report-row">
+						<div>
+							<p class="news-date"><?php echo esc_html( get_post_meta( get_the_ID(), 'efmsun_doc_type', true ) ?: get_post_type_object( get_post_type() )->labels->singular_name ); ?></p>
+							<h3><?php the_title(); ?></h3>
+						</div>
+						<?php if ( $file ) : ?>
+							<a class="btn btn-line" href="<?php echo esc_url( $file ); ?>">Скачать</a>
+						<?php else : ?>
+							<span class="btn btn-line is-disabled">Файл скоро</span>
+						<?php endif; ?>
+					</article>
+				<?php endwhile; ?>
+				<?php wp_reset_postdata(); ?>
+			<?php endif; ?>
+		</div>
+		<p class="after-cards">
+			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'otchetnost' ) ); ?>">Отчёты фонда</a>
+		</p>
+	</div>
+</section>
+
+<section class="section help-teaser">
+	<div class="container split-block">
+		<div>
+			<p class="eyebrow">Как помочь</p>
+			<h2>Пожертвование в общий целевой капитал</h2>
+			<p>Онлайн-оплата, QR, перевод по реквизитам, договоры для физлиц и юрлиц. Налоговый вычет — по ст. 219 НК РФ.</p>
+			<p><a class="btn btn-primary" href="<?php echo esc_url( efmsun_help_url() ); ?>">Как помочь</a></p>
+		</div>
+		<div class="card card-plain">
+			<h3>Новости фонда на почту</h3>
+			<?php efmsun_subscribe_form(); ?>
+		</div>
+	</div>
+</section>
+
+<section class="section partners">
+	<div class="container">
+		<div class="section-head">
+			<p class="eyebrow">Партнёры</p>
+			<h2>Кто уже поддерживает университет</h2>
+		</div>
+		<p class="page-lead">Логотипы партнёров появятся, когда фонд пришлёт материалы. Пока это место для витрины дарителей.</p>
+	</div>
+</section>
+
+<section class="section home-contacts">
+	<div class="container split-block">
+		<div>
+			<p class="eyebrow">Контакты</p>
+			<h2>Связаться с фондом</h2>
+			<p><?php echo esc_html( get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' ) ); ?></p>
+			<p>
+				<a href="mailto:<?php echo esc_attr( get_theme_mod( 'efmsun_email', 'info@efmsun.ru' ) ); ?>"><?php echo esc_html( get_theme_mod( 'efmsun_email', 'info@efmsun.ru' ) ); ?></a><br>
+				<?php echo esc_html( get_theme_mod( 'efmsun_phone', '+7 (423) 000-00-00' ) ); ?>
+			</p>
+			<p><a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'kontakty' ) ); ?>">Все контакты</a></p>
+		</div>
+		<div class="card card-plain">
+			<?php efmsun_feedback_form( array( 'title' => 'Короткий вопрос фонду', 'topic' => 'Вопрос с главной', 'phone' => false ) ); ?>
+		</div>
 	</div>
 </section>
 

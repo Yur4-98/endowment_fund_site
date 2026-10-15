@@ -10,13 +10,14 @@ get_header();
 $email   = get_theme_mod( 'efmsun_email', 'info@efmsun.ru' );
 $phone   = get_theme_mod( 'efmsun_phone', '+7 (423) 000-00-00' );
 $address = get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' );
+$director = get_theme_mod( 'efmsun_director', 'Директор фонда (заглушка)' );
 ?>
 
 <section class="page-hero">
 	<div class="container">
 		<p class="eyebrow">Контакты</p>
 		<h1>Связаться с фондом</h1>
-		<p class="page-lead">Телефон, почта и адрес — заглушки. Их можно заменить в «Внешний вид → Настроить».</p>
+		<p class="page-lead">Телефон, почта и адрес меняются в «Внешний вид → Настроить». Форма сохраняет обращения в админке WordPress.</p>
 	</div>
 </section>
 
@@ -29,11 +30,12 @@ $address = get_theme_mod( 'efmsun_address', 'Владивосток, ул. Ве�
 			<p><?php echo esc_html( $phone ); ?></p>
 			<p class="footer-label">Адрес</p>
 			<p><?php echo esc_html( $address ); ?></p>
+			<p class="footer-label">Директор</p>
+			<p><?php echo esc_html( $director ); ?></p>
+			<p class="form-note">Карта появится, когда фонд подтвердит адрес для публикации.</p>
 		</div>
 		<div class="card card-plain">
-			<h2>Написать сообщение</h2>
-			<p>Форма появится после почты на домене. Пока напишите напрямую на <?php echo esc_html( $email ); ?>.</p>
-			<a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Сделать вклад</a>
+			<?php efmsun_feedback_form( array( 'title' => 'Форма обратной связи', 'topic' => 'Контакты' ) ); ?>
 		</div>
 	</div>
 </section>

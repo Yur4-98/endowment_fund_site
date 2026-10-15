@@ -45,10 +45,16 @@
 					'fallback_cb'    => 'efmsun_fallback_menu',
 				) );
 				?>
-				<a class="btn btn-header" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Сделать вклад</a>
+				<form class="header-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<label class="screen-reader-text" for="header-s">Поиск</label>
+					<input id="header-s" type="search" name="s" placeholder="Поиск" value="<?php echo esc_attr( get_search_query() ); ?>">
+					<button type="submit" class="header-search-btn">Найти</button>
+				</form>
+				<a class="btn btn-header" href="<?php echo esc_url( efmsun_help_url() ); ?>">Поддержать фонд</a>
 			</nav>
 		</div>
 	</header>
 
-	<main id="content" class="site-main">
+	<?php efmsun_breadcrumbs(); ?>
 
+	<main id="content" class="site-main">
