@@ -1,17 +1,20 @@
 :root {
-  --ink: #0b1220;
-  --navy: #0a2744;
-  --navy-deep: #061525;
-  --sea: #125a86;
-  --blue: #1d5fbf;
-  --blue-bright: #2a73e0;
-  --paper: #f4f7fb;
+  /* Палитра ТЗ v2 (прототип Невельского) */
+  --ink: #183447;
+  --navy: #133d55;
+  --navy-deep: #0e2d3f;
+  --sea: #235f82;
+  --blue: #235f82;
+  --blue-bright: #377b9e;
+  --paper: #faf9f5;
   --card: #ffffff;
-  --line: rgba(10, 39, 68, 0.12);
-  --muted: #4a5b70;
+  --line: #d5dfe2;
+  --muted: #536c7b;
+  --pale: #eaf1f3;
+  --gold: #8b692d;
   --wave-space: clamp(220px, 38vw, 560px);
   --marine-wave-z: 1;
-  --radius: 18px;
+  --radius: 6px;
 }
 
 * { box-sizing: border-box; }
@@ -24,22 +27,14 @@ html {
 body.efmsun {
   margin: 0;
   color: var(--ink);
-  background:
-    linear-gradient(180deg, #f7f9fc 0%, #e8eef6 62%, #d5e4f0 100%);
-  font-family: Manrope, "Segoe UI", sans-serif;
+  background: var(--paper);
+  font-family: Arial, Helvetica, "Segoe UI", sans-serif;
   line-height: 1.55;
   overscroll-behavior-y: none;
 }
 
 body.efmsun::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(900px 420px at 12% -10%, rgba(42, 115, 224, 0.14), transparent 60%),
-    radial-gradient(700px 360px at 100% 20%, rgba(18, 90, 134, 0.1), transparent 55%);
+  display: none;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -47,9 +42,9 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--blue); }
 
 h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
   line-height: 1.12;
 }
 
@@ -543,7 +538,24 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 }
 
 .footer-grid { grid-template-columns: 1.3fr 0.8fr 1fr; }
-.footer-brand { font-family: "Cormorant Garamond", serif; font-size: 1.6rem; color: #fff; }
+.footer-brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.6rem; color: #fff; }
+
+.footer-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.footer-socials a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer-socials a:hover {
+  color: #fff;
+}
 .footer-menu { list-style: none; margin: 0; padding: 0; }
 .footer-menu a,
 .footer-legal a,

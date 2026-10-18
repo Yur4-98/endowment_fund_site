@@ -10,8 +10,13 @@
 	<footer class="site-footer">
 		<div class="container footer-grid">
 			<div>
-				<p class="footer-brand">Фонд целевого капитала<br>МГУ имени адмирала Г.И. Невельского</p>
-				<p class="footer-note">Пожертвование пополняет целевой капитал. Доход от него поддерживает образование, науку и людей университета.</p>
+				<p class="footer-brand">Эндаумент-фонд</p>
+				<p class="footer-note">Фонд целевого капитала МГУ имени адмирала Г.И. Невельского. Пожертвование пополняет целевой капитал. Доход от него поддерживает образование, науку и людей университета.</p>
+				<p class="footer-socials">
+					<a href="https://vk.ru/stfond_msun_vl" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a>
+					<a href="https://t.me/msunfund" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+					<a href="https://ok.ru/profile/573431355090" target="_blank" rel="noopener noreferrer">ОК ↗</a>
+				</p>
 			</div>
 			<div>
 				<p class="footer-label">Разделы</p>

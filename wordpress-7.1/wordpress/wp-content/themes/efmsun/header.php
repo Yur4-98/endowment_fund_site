@@ -26,8 +26,8 @@
 					<span class="brand-mark" aria-hidden="true">EF</span>
 				<?php endif; ?>
 				<span class="brand-text">
-					<span class="brand-name">Фонд целевого капитала</span>
-					<span class="brand-sub">МГУ им. адм. Г.И. Невельского</span>
+					<span class="brand-name">Эндаумент-фонд</span>
+					<span class="brand-sub">Фонд целевого капитала МГУ имени адмирала Г.И.&nbsp;Невельского</span>
 				</span>
 			</a>
 
@@ -55,6 +55,10 @@
 		</div>
 	</header>
 
-	<?php efmsun_breadcrumbs(); ?>
+	<?php
+	if ( ! is_page_template( 'page-about.php' ) ) {
+		efmsun_breadcrumbs();
+	}
+	?>
 
 	<main id="content" class="site-main">

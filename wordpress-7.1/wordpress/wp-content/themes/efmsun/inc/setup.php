@@ -49,11 +49,39 @@ function efmsun_scripts() {
 	wp_localize_script( 'efmsun-theme', 'efmsunTheme', array(
 		'heroLines' => $lines,
 	) );
+
+	if ( is_front_page() ) {
+		wp_enqueue_style(
+			'efmsun-home-proto',
+			EFMSUN_URI . '/assets/css/home-prototype.css',
+			array( 'efmsun-theme' ),
+			EFMSUN_VERSION
+		);
+		wp_enqueue_script(
+			'efmsun-home-proto',
+			EFMSUN_URI . '/assets/js/home-prototype.js',
+			array(),
+			EFMSUN_VERSION,
+			true
+		);
+	}
+
+	if ( is_page_template( 'page-about.php' ) || is_page( 'o-fonde' ) ) {
+		wp_enqueue_style(
+			'efmsun-sections-proto',
+			EFMSUN_URI . '/assets/css/sections-prototype.css',
+			array( 'efmsun-theme' ),
+			EFMSUN_VERSION
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'efmsun_scripts' );
 
 function efmsun_body_class( $classes ) {
 	$classes[] = 'efmsun';
+	if ( is_front_page() ) {
+		$classes[] = 'efmsun-home';
+	}
 	return $classes;
 }
 add_filter( 'body_class', 'efmsun_body_class' );

@@ -1,127 +1,132 @@
 <?php
 /**
  * Template Name: О фонде
+ * По ТЗ v2 и Nevelskoy_sections.html
  *
  * @package efmsun
  */
 
 get_header();
 
-$director = get_theme_mod( 'efmsun_director', 'Директор фонда (заглушка)' );
+$director = get_theme_mod( 'efmsun_director', '' );
 $role     = get_theme_mod( 'efmsun_dir_role', 'Директор' );
-$dphone   = get_theme_mod( 'efmsun_dir_phone', '+7 (423) 000-00-00' );
+$dphone   = get_theme_mod( 'efmsun_dir_phone', '' );
 $demail   = get_theme_mod( 'efmsun_dir_email', 'info@efmsun.ru' );
 ?>
 
-<section class="page-hero">
-	<div class="container">
-		<p class="eyebrow">О фонде</p>
-		<h1>Целевой капитал для морского университета</h1>
-		<p class="page-lead">Самостоятельное юридическое лицо в форме фонда. Работает по 275-ФЗ, чтобы поддерживать образование, науку и людей МГУ имени адмирала Г.И. Невельского доходом от сохранённого капитала.</p>
-	</div>
-</section>
-
-<section class="section">
-	<div class="container prose-page">
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			if ( get_the_content() ) {
-				the_content();
-			}
-		endwhile;
-		?>
-	</div>
-</section>
-
-<section class="section">
-	<div class="container card-grid card-grid-3">
-		<article class="card card-plain">
-			<h2>Миссия</h2>
-			<p>Долгосрочная поддержка университета: люди, наука и учебная инфраструктура, а не разовые акции.</p>
-		</article>
-		<article class="card card-plain">
-			<h2>Что такое целевой капитал</h2>
-			<p>Пожертвования пополняют капитал. Сам капитал сохраняется, доход направляется на программы фонда.</p>
-		</article>
-		<article class="card card-plain">
-			<h2>Как это работает</h2>
-			<p>Доход распределяется по финансовому плану: Управляющий совет утверждает его после согласования Попечительским советом.</p>
-		</article>
-	</div>
-</section>
-
-<section class="section">
-	<div class="container">
-		<div class="section-head">
-			<p class="eyebrow">История</p>
-			<h2>От создания фонда к открытому эндаументу</h2>
+<div class="proto-sections about-page">
+	<div class="wrap">
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+			<span aria-hidden="true">/</span>
+			<span>О фонде</span>
 		</div>
-		<ol class="timeline">
-			<li>
-				<p class="news-date">2015</p>
-				<h3>Создание фонда</h3>
-				<p>Фонд целевого капитала университета учреждён. Точные даты и документы появятся после сверки с архивом.</p>
-			</li>
-			<li>
-				<p class="news-date">Далее</p>
-				<h3>Органы управления и отчётность</h3>
-				<p>Формируются Попечительский и Управляющий советы, публикуются документы и отчёты.</p>
-			</li>
-			<li>
-				<p class="news-date">Сейчас</p>
-				<h3>Сайт efmsun.ru</h3>
-				<p>Отдельный сайт фонда: пожертвования, FAQ, отчётность и документы вне раздела университета.</p>
-			</li>
-		</ol>
-	</div>
-</section>
 
-<section class="section">
-	<div class="container split-block">
-		<div>
-			<p class="eyebrow">Органы управления</p>
-			<h2>Кто принимает решения</h2>
-			<div class="card-grid">
-				<article class="card card-plain">
-					<h3>Попечительский совет</h3>
-					<p>Согласует направления использования дохода. Состав появится, когда фонд пришлёт список.</p>
-				</article>
-				<article class="card card-plain">
-					<h3>Управляющий совет</h3>
-					<p>Утверждает финансовый план расходования дохода от целевого капитала.</p>
-				</article>
+		<div class="page-hero">
+			<p class="eyebrow">О фонде</p>
+			<span class="page-index" aria-hidden="true">01</span>
+			<h1 tabindex="-1">Целевой капитал для морского университета</h1>
+			<p class="lead">Фонд целевого капитала МГУ имени адмирала Г.И. Невельского создан для долгосрочной поддержки образования, науки и людей университета.</p>
+			<div class="actions">
+				<a class="btn" href="<?php echo esc_url( efmsun_page_url( 'proekty' ) ); ?>">Направления финансирования <span aria-hidden="true">→</span></a>
+				<a class="link" href="<?php echo esc_url( efmsun_page_url( 'dokumenty' ) ); ?>">Документы фонда</a>
 			</div>
 		</div>
-		<div class="card card-plain">
-			<p class="eyebrow">Директор</p>
-			<h2><?php echo esc_html( $director ); ?></h2>
-			<p><?php echo esc_html( $role ); ?></p>
-			<p>
-				<a href="mailto:<?php echo esc_attr( $demail ); ?>"><?php echo esc_html( $demail ); ?></a><br>
-				<?php echo esc_html( $dphone ); ?>
-			</p>
-			<p>Биография и фото заменяются в «Внешний вид → Настроить».</p>
-		</div>
-	</div>
-</section>
 
-<section class="section">
-	<div class="container">
-		<p class="after-cards">
-			<a class="btn btn-primary" href="<?php echo esc_url( efmsun_help_url() ); ?>">Поддержать фонд</a>
-			<a class="btn btn-line" href="<?php echo esc_url( efmsun_page_url( 'dokumenty' ) ); ?>">Документы</a>
-			<a class="btn btn-line" href="<?php echo esc_url( efmsun_page_url( 'otchetnost' ) ); ?>">Отчётность</a>
-			<a class="btn btn-line" href="<?php echo esc_url( efmsun_page_url( 'kontakty' ) ); ?>">Связаться</a>
-		</p>
-	</div>
-</section>
+		<section class="section">
+			<div class="split">
+				<div>
+					<p class="eyebrow">Миссия</p>
+					<h2 style="margin-top:16px">Помогать сегодня.<br>Создавать опору на годы.</h2>
+					<p class="copy">Поддержка преподавателей-ветеранов, гранты аспирантам и молодым преподавателям, обновление оборудования и учебной инфраструктуры — три направления финансирования фонда.</p>
+					<?php
+					while ( have_posts() ) :
+						the_post();
+						if ( get_the_content() ) {
+							echo '<div class="copy prose-page" style="margin-top:18px">';
+							the_content();
+							echo '</div>';
+						}
+					endwhile;
+					?>
+				</div>
+				<div class="callout">
+					<p class="eyebrow" style="margin:0 0 15px">Что такое целевой капитал</p>
+					<h3>Пожертвование становится частью общего капитала.</h3>
+					<p>Капитал передаётся в управление. Доход от его управления направляется на программы поддержки университета. Пожертвование и доход выполняют разные задачи.</p>
+					<a class="link" href="<?php echo esc_url( home_url( '/#mechanism' ) ); ?>">Посмотреть, как это работает →</a>
+				</div>
+			</div>
+			<div class="mini-route" aria-label="Принцип работы целевого капитала">
+				<b>Пожертвование</b><i aria-hidden="true">→</i>
+				<b>Целевой капитал</b><i aria-hidden="true">→</i>
+				<b>Управление</b><i aria-hidden="true">→</i>
+				<b>Доход на программы</b>
+			</div>
+		</section>
 
-<section class="section">
-	<div class="container" style="max-width:640px">
-		<?php efmsun_feedback_form( array( 'title' => 'Вопрос о деятельности фонда', 'topic' => 'О фонде' ) ); ?>
+		<section class="section">
+			<div class="section-title">
+				<h2>Кто принимает решения</h2>
+				<a class="link" href="<?php echo esc_url( efmsun_page_url( 'dokumenty' ) ); ?>">Устав и положения →</a>
+			</div>
+			<div class="grid3">
+				<div class="panel governance">
+					<span class="index">01</span>
+					<h3>Попечительский совет</h3>
+					<p>Согласует направления использования дохода. Состав появится по документам фонда.</p>
+				</div>
+				<div class="panel governance">
+					<span class="index">02</span>
+					<h3>Управляющий совет</h3>
+					<p>Утверждает финансовый план расходования дохода от целевого капитала.</p>
+				</div>
+				<div class="panel governance">
+					<span class="index">03</span>
+					<h3><?php echo $director ? esc_html( $role ) : 'Директор'; ?></h3>
+					<?php if ( $director ) : ?>
+						<p><?php echo esc_html( $director ); ?></p>
+						<p>
+							<?php if ( $demail ) : ?>
+								<a href="mailto:<?php echo esc_attr( $demail ); ?>"><?php echo esc_html( $demail ); ?></a>
+							<?php endif; ?>
+							<?php if ( $dphone ) : ?>
+								<br><?php echo esc_html( $dphone ); ?>
+							<?php endif; ?>
+						</p>
+					<?php else : ?>
+						<p>Имя и контакты директора заполняются во «Внешний вид → Настроить».</p>
+					<?php endif; ?>
+				</div>
+			</div>
+			<p class="prototype-note" style="border:0">Полномочия и состав органов управления дополняются по документам фонда.</p>
+		</section>
+
+		<section class="section">
+			<div class="split">
+				<div>
+					<p class="eyebrow">История фонда</p>
+					<h2 style="margin-top:16px">От создания фонда<br>к открытому эндаументу</h2>
+					<p class="copy">Здесь будет короткая хронология: основание фонда, первые программы поддержки и развитие целевого капитала.</p>
+					<p class="prototype-note" style="border:0">Для этой части нужны подтверждённые даты и события от фонда.</p>
+				</div>
+				<div class="callout">
+					<h3>Есть вопрос о фонде?</h3>
+					<p>О деятельности, документах или участии в программах — напишите через форму на странице контактов.</p>
+					<a class="btn ghost" href="<?php echo esc_url( efmsun_page_url( 'kontakty' ) ); ?>">Связаться с фондом →</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="actions">
+				<a class="btn" href="<?php echo esc_url( efmsun_help_url() ); ?>">Поддержать фонд</a>
+				<a class="btn ghost" href="<?php echo esc_url( efmsun_page_url( 'otchetnost' ) ); ?>">Отчётность</a>
+				<a class="link" href="<?php echo esc_url( efmsun_page_url( 'dokumenty' ) ); ?>">Документы</a>
+			</div>
+		</section>
 	</div>
-</section>
+</div>
 
 <?php
 get_footer();
