@@ -98,6 +98,7 @@ h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
 
 .header-inner,
 .site-nav,
+.header-actions,
 .brand,
 .brand-text {
   display: flex;
@@ -105,9 +106,42 @@ h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
 }
 
 .header-inner {
+  position: relative;
   justify-content: space-between;
   min-height: 84px;
-  gap: 24px;
+  gap: 16px;
+}
+
+@media (min-width: 901px) {
+  .header-inner {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) auto minmax(160px, 1fr);
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  .brand {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    display: contents;
+  }
+
+  .menu {
+    grid-column: 2;
+    justify-self: center;
+  }
+
+  .header-actions {
+    grid-column: 3;
+    justify-self: end;
+  }
 }
 
 .brand {
@@ -132,20 +166,36 @@ h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
 .brand-name { font-size: 1.15rem; }
 .brand-sub { font-size: 0.78rem; color: rgba(255, 255, 255, 0.72); }
 
-.site-nav { gap: 16px; }
+.site-nav {
+  gap: 16px;
+  min-width: 0;
+}
+
+.header-actions {
+  gap: 12px;
+  flex-shrink: 0;
+}
 
 .menu {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
   gap: 18px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+.menu > li {
+  flex: none;
+}
+
 .menu a {
   color: rgba(255, 255, 255, 0.86);
   text-decoration: none;
   font-size: 0.92rem;
+  white-space: nowrap;
 }
 
 .menu a:hover,
@@ -605,10 +655,21 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
     background: var(--navy-deep);
     flex-direction: column;
     align-items: stretch;
+    gap: 16px;
+    z-index: 30;
   }
 
   .site-nav.is-open { display: flex; }
-  .menu { flex-direction: column; }
+  .menu {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
   .header-search { width: 100%; }
   .header-search input { width: 100%; }
   .amount-grid { grid-template-columns: repeat(2, 1fr); }

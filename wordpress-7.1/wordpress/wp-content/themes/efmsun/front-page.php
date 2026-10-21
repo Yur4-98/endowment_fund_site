@@ -1,6 +1,6 @@
 <?php
 /**
- * Главная по ТЗ v2 и HTML-прототипу: 4 блока, парусник, схема, калькулятор.
+ * Главная по прототипу v5 (окт 2026): корабль, 4 направления, калькулятор 27%.
  *
  * @package efmsun
  */
@@ -28,6 +28,11 @@ $directions = array(
 		'title' => 'Обновление оборудования и учебной инфраструктуры',
 		'desc'  => 'Современные условия для качественного образования',
 	),
+	array(
+		'slug'  => 'scholarship',
+		'title' => 'Стипендия курсантам и студентам, обучающимся на отлично',
+		'desc'  => 'Поддержка отличной учёбы курсантов и студентов',
+	),
 );
 
 $projects_url = efmsun_page_url( 'proekty' );
@@ -48,14 +53,14 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 				<h1 class="official-title" id="heroTitle">Фонд целевого капитала<br>МГУ имени адмирала Г.И.&nbsp;Невельского</h1>
 				<p><?php echo esc_html( $text ); ?></p>
 				<div class="hero-actions">
-					<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Поддержать фонд <span class="ar" aria-hidden="true">↗</span></a>
-					<a class="textlink" href="#mechanism">Как это работает <span aria-hidden="true">↓</span></a>
+					<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Поддержать фонд</a>
+					<a class="textlink" href="#mechanism">Как это работает</a>
 				</div>
 			</div>
 			<?php get_template_part( 'template-parts/home', 'ship' ); ?>
 		</div>
 		<div class="hero-bottom">
-			<a href="#programs">01 — Направления финансирования ↓</a>
+			<a href="#programs">01 — Направления финансирования</a>
 			<span>Поддержите будущее морского образования</span>
 		</div>
 	</div>
@@ -68,20 +73,24 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 				<p class="eyebrow">01 / На что работает ваш вклад</p>
 				<h2 id="programTitle">Направления финансирования</h2>
 			</div>
-			<a class="textlink all-directions" href="<?php echo esc_url( $projects_url ); ?>">Все направления <span aria-hidden="true">↗</span></a>
+			<a class="textlink all-directions" href="<?php echo esc_url( $projects_url ); ?>">Все направления</a>
 		</div>
-		<div class="program-grid">
+		<div class="program-grid" id="programTrack" role="region" aria-label="Направления финансирования" tabindex="0">
 			<?php foreach ( $directions as $i => $item ) : ?>
 				<article class="program">
 					<span class="index"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
 					<h3><?php echo esc_html( $item['title'] ); ?></h3>
 					<p><?php echo esc_html( $item['desc'] ); ?></p>
-					<a class="textlink" href="<?php echo esc_url( $projects_url ); ?>#<?php echo esc_attr( $item['slug'] ); ?>">Подробнее о направлении <span aria-hidden="true">↗</span></a>
+					<a class="textlink" href="<?php echo esc_url( $projects_url ); ?>#<?php echo esc_attr( $item['slug'] ); ?>">Подробнее о направлении</a>
 				</article>
 			<?php endforeach; ?>
 		</div>
+		<div class="program-navigation">
+			<div class="program-rail" aria-hidden="true"><span id="programThumb"></span></div>
+			<button class="program-arrow" id="nextProgram" type="button" aria-label="Показать следующее направление"><span aria-hidden="true">⟶</span></button>
+		</div>
 		<div class="program-note">
-			<a class="textlink" href="<?php echo esc_url( $reports_url ); ?>">Результаты поддержки ↗</a>
+			<a class="textlink" href="<?php echo esc_url( $reports_url ); ?>">Результаты поддержки</a>
 		</div>
 	</div>
 </section>
@@ -93,7 +102,7 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 				<p class="eyebrow">02 / Целевой капитал</p>
 				<h2 id="mechanismTitle">Как это работает</h2>
 			</div>
-			<p class="intro">Капитал находится в управлении, а доход помогает финансировать программы. Затем наступает следующий период управления.</p>
+			<p class="intro">Пожертвования пополняют целевой капитал. Его передают в управление, а часть полученного дохода после расходов направляют на программы университета. Основная сумма остаётся работать дальше.</p>
 		</div>
 		<?php get_template_part( 'template-parts/home', 'diagram' ); ?>
 		<?php get_template_part( 'template-parts/home', 'calculator' ); ?>
@@ -106,20 +115,17 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 			<p class="eyebrow">03 / Доверие и участие</p>
 			<h2 id="trustTitle">Поддержать фонд.<br>Продолжить историю.</h2>
 			<p>Выберите удобный способ участия или свяжитесь с фондом, чтобы обсудить своё пожертвование.</p>
-			<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Как я могу помочь <span class="ar" aria-hidden="true">↗</span></a>
+			<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Как я могу помочь</a>
 		</div>
 		<div class="trust-links">
 			<a class="trust-link" href="<?php echo esc_url( $reports_url ); ?>">
 				<span><strong>Отчётность</strong><small>Как средства помогают университету</small></span>
-				<span class="ar" aria-hidden="true">↗</span>
 			</a>
 			<a class="trust-link" href="<?php echo esc_url( $about_url ); ?>">
 				<span><strong>О фонде</strong><small>Назначение фонда и его программы</small></span>
-				<span class="ar" aria-hidden="true">↗</span>
 			</a>
 			<a class="trust-link" href="<?php echo esc_url( $contacts_url ); ?>">
 				<span><strong>Связаться с фондом</strong><small>Вопросы и обсуждение участия</small></span>
-				<span class="ar" aria-hidden="true">↗</span>
 			</a>
 		</div>
 	</div>

@@ -64,6 +64,14 @@ function efmsun_scripts() {
 			EFMSUN_VERSION,
 			true
 		);
+		wp_localize_script(
+			'efmsun-home-proto',
+			'efmsunHome',
+			array(
+				'shipWebp'   => EFMSUN_URI . '/assets/img/ship-transparent-mirrored.webp',
+				'shipPoster' => EFMSUN_URI . '/assets/img/ship-poster-mirrored.png',
+			)
+		);
 	}
 
 	if ( is_page_template( 'page-about.php' ) || is_page( 'o-fonde' ) ) {
