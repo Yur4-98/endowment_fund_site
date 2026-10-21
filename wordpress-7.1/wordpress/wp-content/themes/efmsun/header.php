@@ -19,12 +19,12 @@
 <div class="site">
 	<header class="site-header">
 		<div class="container header-inner">
-			<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<?php if ( has_custom_logo() ) : ?>
-					<?php the_custom_logo(); ?>
-				<?php else : ?>
-					<span class="brand-mark" aria-hidden="true">EF</span>
-				<?php endif; ?>
+			<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Эндаумент-фонд — Фонд целевого капитала МГУ имени адмирала Г.И. Невельского — главная">
+				<span class="brand-mark" aria-hidden="true">
+					<svg viewBox="0 0 42 46" fill="none" stroke="currentColor" stroke-width="1.3">
+						<path d="M5 35h33l-8 7H13L5 35ZM22 4v28M20 7L7 29h13V7ZM25 12l11 17H25V12M2 44c6-3 9 2 15 0s10 2 16 0 7 0 7 0"/>
+					</svg>
+				</span>
 				<span class="brand-text">
 					<span class="brand-name">Эндаумент-фонд</span>
 					<span class="brand-sub">Фонд целевого капитала МГУ имени адмирала Г.И.&nbsp;Невельского</span>
@@ -46,11 +46,6 @@
 				) );
 				?>
 				<div class="header-actions">
-					<form class="header-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-						<label class="screen-reader-text" for="header-s">Поиск</label>
-						<input id="header-s" type="search" name="s" placeholder="Поиск" value="<?php echo esc_attr( get_search_query() ); ?>">
-						<button type="submit" class="header-search-btn">Найти</button>
-					</form>
 					<a class="btn btn-header" href="<?php echo esc_url( efmsun_help_url() ); ?>">Поддержать фонд</a>
 				</div>
 			</nav>
