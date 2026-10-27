@@ -1,6 +1,6 @@
 <?php
 /**
- * Подвал, волна и плавающая кнопка.
+ * Подвал сайта.
  *
  * @package efmsun
  */
@@ -39,7 +39,7 @@
 				<p class="footer-label">Контакты</p>
 				<p>
 					<a href="mailto:<?php echo esc_attr( get_theme_mod( 'efmsun_email', 'info@efmsun.ru' ) ); ?>"><?php echo esc_html( get_theme_mod( 'efmsun_email', 'info@efmsun.ru' ) ); ?></a><br>
-					<?php echo esc_html( get_theme_mod( 'efmsun_phone', '+7 (423) 000-00-00' ) ); ?><br>
+					<a href="tel:+79842114572"><?php echo esc_html( get_theme_mod( 'efmsun_phone', '+7 (984) 211-45-72' ) ); ?></a><br>
 					<?php echo esc_html( get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' ) ); ?>
 				</p>
 				<p class="footer-legal">
@@ -55,8 +55,6 @@
 	</footer>
 </div>
 
-<?php get_template_part( 'template-parts/waves' ); ?>
-<?php get_template_part( 'template-parts/donate-float' ); ?>
 <?php wp_footer(); ?>
 </body>
 </html>

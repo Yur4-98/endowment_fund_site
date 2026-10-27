@@ -7,6 +7,21 @@
 
 get_header();
 
+$bundled = array(
+	array(
+		'title' => 'Устав Фонда целевого капитала',
+		'note'  => 'ФЦК МГУ им. адм. Г.И. Невельского',
+		'type'  => 'Устав',
+		'url'   => EFMSUN_URI . '/assets/docs/ustav.pdf',
+	),
+	array(
+		'title' => 'Договор пожертвования',
+		'note'  => 'Шаблон договора (DOCX)',
+		'type'  => 'Для пожертвования',
+		'url'   => EFMSUN_URI . '/assets/docs/dogovor-pozhertvovaniya.docx',
+	),
+);
+
 $query = new WP_Query( array(
 	'post_type'      => 'efmsun_document',
 	'posts_per_page' => 50,
@@ -27,6 +42,17 @@ $query = new WP_Query( array(
 <section class="section">
 	<div class="container">
 		<div class="report-list">
+			<?php foreach ( $bundled as $item ) : ?>
+				<article class="report-row">
+					<div>
+						<p class="news-date"><?php echo esc_html( $item['type'] ); ?></p>
+						<h2><?php echo esc_html( $item['title'] ); ?></h2>
+						<p><?php echo esc_html( $item['note'] ); ?></p>
+					</div>
+					<a class="btn btn-line" href="<?php echo esc_url( $item['url'] ); ?>" download>Скачать</a>
+				</article>
+			<?php endforeach; ?>
+
 			<?php if ( $query->have_posts() ) : ?>
 				<?php
 				while ( $query->have_posts() ) :
@@ -50,13 +76,14 @@ $query = new WP_Query( array(
 					</article>
 				<?php endwhile; ?>
 				<?php wp_reset_postdata(); ?>
-			<?php else : ?>
-				<p>Документы появятся после загрузки PDF в админке.</p>
 			<?php endif; ?>
 		</div>
 		<p class="after-cards">
 			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'otchetnost' ) ); ?>">Перейти к отчётности</a>
+			·
+			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">Договор пожертвования на сайте</a>
 		</p>
+		<?php get_template_part( 'template-parts/section', 'support' ); ?>
 	</div>
 </section>
 

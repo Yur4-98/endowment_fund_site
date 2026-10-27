@@ -7,9 +7,14 @@
 
 get_header();
 
+$qr_url = get_theme_mod( 'efmsun_qr_image', '' );
+if ( ! $qr_url ) {
+	$qr_url = EFMSUN_URI . '/assets/img/qr-payment.jpg';
+}
+
 $methods = array(
 	array( 'Онлайн на сайте', 'Форма Лейки: карта через Сбер (после ключей API) или банковская квитанция.', true, efmsun_donate_url() ),
-	array( 'QR-код', 'Перевод со смартфона. QR появится после настройки мобильного платежа.', false, '' ),
+	array( 'QR-код', 'Отсканируйте код приложением банка и переведите пожертвование.', true, '#payment-qr' ),
 	array( 'Сбербанк Онлайн', 'Перевод по реквизитам фонда в приложении банка.', true, '' ),
 	array( 'Банкомат Сбера', 'Пополнение по реквизитам через банкомат.', true, '' ),
 	array( 'Операционист', 'Перевод в отделении банка по реквизитам.', true, '' ),
@@ -58,7 +63,7 @@ $faq = new WP_Query( array(
 		<p class="eyebrow">Как помочь</p>
 		<h1>Поддержать целевой капитал университета</h1>
 		<p class="page-lead">Средства идут в общий капитал фонда, не на отдельный проект. Доход от капитала поддерживает образование, науку и людей МГУ имени адмирала Г.И. Невельского.</p>
-		<p><a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Пожертвовать сейчас</a></p>
+		<p><a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Поддержать фонд</a></p>
 	</div>
 </section>
 
@@ -79,6 +84,27 @@ $faq = new WP_Query( array(
 				</article>
 			<?php endforeach; ?>
 		</div>
+	</div>
+</section>
+
+<section class="section" id="payment-qr">
+	<div class="container split-block">
+		<div>
+			<p class="eyebrow">QR для оплаты</p>
+			<h2>Перевод со смартфона</h2>
+			<p>Откройте приложение банка, отсканируйте код и подтвердите перевод. Перед оплатой сверьте наименование получателя с реквизитами ниже.</p>
+			<p><a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">Договор пожертвования</a></p>
+		</div>
+		<figure class="card card-plain qr-card">
+			<img
+				src="<?php echo esc_url( $qr_url ); ?>"
+				alt="QR-код для пожертвования в фонд"
+				width="360"
+				height="360"
+				loading="lazy"
+				decoding="async"
+			>
+		</figure>
 	</div>
 </section>
 
@@ -119,9 +145,11 @@ $faq = new WP_Query( array(
 		</div>
 		<aside class="card card-plain">
 			<h2>Договоры</h2>
-			<p>Шаблоны договоров пожертвования для физлица и юрлица готовит юрист. Здесь появятся PDF.</p>
-			<p><span class="btn btn-line is-disabled">Договор для физлица</span></p>
-			<p><span class="btn btn-line is-disabled">Договор для юрлица</span></p>
+			<p>Шаблон договора пожертвования на пополнение целевого капитала.</p>
+			<p>
+				<a class="btn btn-line" href="<?php echo esc_url( EFMSUN_URI . '/assets/docs/dogovor-pozhertvovaniya.docx' ); ?>" download>Скачать договор (DOCX)</a>
+			</p>
+			<p><a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">Читать на сайте</a></p>
 			<h2>Налоговый вычет</h2>
 			<p>Пожертвование в фонд целевого капитала может дать право на социальный налоговый вычет по статье 219 НК РФ.</p>
 			<p><a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'faq' ) ); ?>">Подробнее в FAQ</a></p>
@@ -165,6 +193,9 @@ $faq = new WP_Query( array(
 			<p><a href="<?php echo esc_url( efmsun_page_url( 'politika-pozhertvovaniy' ) ); ?>">Политика обработки пожертвований</a></p>
 			<p><a href="<?php echo esc_url( efmsun_page_url( 'politika-pd' ) ); ?>">Политика обработки персональных данных</a></p>
 		</div>
+	</div>
+	<div class="container">
+		<?php get_template_part( 'template-parts/section', 'support' ); ?>
 	</div>
 </section>
 

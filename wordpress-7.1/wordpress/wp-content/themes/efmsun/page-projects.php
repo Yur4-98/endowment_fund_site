@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Проекты
- * Направления по ТЗ v2 + карточки проектов из CMS.
+ * Направления финансирования по прототипу v5.
  *
  * @package efmsun
  */
@@ -15,13 +15,15 @@ $directions = array(
 		'title' => 'Поддержка преподавателей-ветеранов',
 		'desc'  => 'Забота о тех, кто заложил традиции морского образования',
 		'body'  => 'В центре этого направления — преподаватели-ветераны университета. Здесь будут условия поддержки, порядок обращения и результаты программы.',
+		'note'  => '',
 	),
 	array(
 		'id'    => 'young',
 		'num'   => '02',
 		'title' => 'Гранты аспирантам и молодым преподавателям',
 		'desc'  => 'Поддержка новых поколений исследователей и педагогов',
-		'body'  => 'Поддержка аспирантов и молодых преподавателей. Здесь будут положение о грантах, требования к участникам и порядок подачи заявки.',
+		'body'  => 'Фонд выплачивает молодым преподавателям 50 000 ₽ в месяц на руки — 600 000 ₽ за год на одного человека. Условия поддержки аспирантов и порядок отбора нужно дополнить по документам фонда.',
+		'note'  => '',
 	),
 	array(
 		'id'    => 'equipment',
@@ -29,13 +31,15 @@ $directions = array(
 		'title' => 'Обновление оборудования и учебной инфраструктуры',
 		'desc'  => 'Современные условия для качественного образования',
 		'body'  => 'Развитие условий для обучения в университете. Здесь будут конкретные задачи, описание оборудования и результаты обновления учебной инфраструктуры.',
+		'note'  => '',
 	),
 	array(
 		'id'    => 'scholarship',
 		'num'   => '04',
 		'title' => 'Стипендия курсантам и студентам, обучающимся на отлично',
 		'desc'  => 'Поддержка отличной учёбы курсантов и студентов',
-		'body'  => 'Стипендии отличникам. Здесь будут условия назначения, размер и порядок выплат.',
+		'body'  => 'Стипендии отличникам: поддержка курсантов и студентов с высокой академической успеваемостью.',
+		'note'  => 'Программа планируется к запуску в 2027 году.',
 	),
 );
 
@@ -60,13 +64,27 @@ $query = new WP_Query( array(
 			<p class="eyebrow">Направления финансирования</p>
 			<h2>Четыре направления фонда</h2>
 		</div>
-		<div class="card-grid card-grid-3">
+		<div class="card-grid card-grid-2 directions-grid">
 			<?php foreach ( $directions as $item ) : ?>
-				<article class="card card-plain" id="<?php echo esc_attr( $item['id'] ); ?>">
+				<article class="card card-plain direction-card" id="<?php echo esc_attr( $item['id'] ); ?>">
+					<figure class="direction-media" aria-hidden="true">
+						<?php
+						$img = EFMSUN_DIR . '/assets/img/directions/' . $item['id'] . '.jpg';
+						$img_uri = EFMSUN_URI . '/assets/img/directions/' . $item['id'] . '.jpg';
+						if ( file_exists( $img ) ) :
+							?>
+							<img src="<?php echo esc_url( $img_uri ); ?>" alt="" width="640" height="360" loading="lazy">
+						<?php else : ?>
+							<span class="direction-media-placeholder"></span>
+						<?php endif; ?>
+					</figure>
 					<p class="eyebrow"><?php echo esc_html( $item['num'] ); ?></p>
 					<h2><?php echo esc_html( $item['title'] ); ?></h2>
-					<p><?php echo esc_html( $item['desc'] ); ?></p>
+					<p class="direction-desc"><?php echo esc_html( $item['desc'] ); ?></p>
 					<p><?php echo esc_html( $item['body'] ); ?></p>
+					<?php if ( ! empty( $item['note'] ) ) : ?>
+						<p class="direction-note"><?php echo esc_html( $item['note'] ); ?></p>
+					<?php endif; ?>
 					<p>
 						<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'kontakty' ) ); ?>">Вопрос о программе</a>
 						·
@@ -76,6 +94,7 @@ $query = new WP_Query( array(
 			<?php endforeach; ?>
 		</div>
 		<p class="after-cards">Условные стоимости калькулятора на главной — не бюджеты программ. Условия и результаты дополняются по материалам фонда.</p>
+		<?php get_template_part( 'template-parts/section', 'support' ); ?>
 	</div>
 </section>
 
@@ -106,6 +125,7 @@ $query = new WP_Query( array(
 			<?php endwhile; ?>
 			<?php wp_reset_postdata(); ?>
 		</div>
+		<?php get_template_part( 'template-parts/section', 'support' ); ?>
 	</div>
 </section>
 <?php endif; ?>
@@ -120,7 +140,7 @@ $query = new WP_Query( array(
 			<h3>Поддержать работу фонда</h3>
 			<p>Выбрать способ пожертвования или задать вопрос о перечислении средств.</p>
 			<p>
-				<a class="btn btn-primary" href="<?php echo esc_url( efmsun_help_url() ); ?>">Сделать вклад</a>
+				<a class="btn btn-primary" href="<?php echo esc_url( efmsun_help_url() ); ?>">Поддержать фонд</a>
 				<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'otchetnost' ) ); ?>">Отчётность</a>
 			</p>
 		</div>

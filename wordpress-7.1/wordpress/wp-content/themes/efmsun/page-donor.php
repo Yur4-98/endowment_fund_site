@@ -14,7 +14,7 @@ get_header();
 		<h1>Стать дарителем фонда</h1>
 		<p class="page-lead">Кабинет появится позже: история платежей, квитанции, данные и управление ежемесячным взносом. Сейчас можно сделать разовый вклад без регистрации.</p>
 		<p>
-			<a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Сделать вклад</a>
+			<a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Поддержать фонд</a>
 			<a class="btn btn-line" href="<?php echo esc_url( efmsun_help_url() ); ?>">Все способы помочь</a>
 		</p>
 	</div>

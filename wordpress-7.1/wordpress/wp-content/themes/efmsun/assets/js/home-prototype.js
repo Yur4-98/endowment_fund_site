@@ -54,7 +54,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){s
 /* IMPACT MODEL START */
 const IMPACT_ITEMS={
   veterans:{cost:10000,part:'стоимости одной выплаты помощи',one:'выплата помощи',few:'выплаты помощи',many:'выплат помощи',hint:'Условная стоимость одной выплаты — 10 000 ₽.'},
-  grant:{cost:600000,part:'годовых выплат на руки',one:'год поддержки',few:'года поддержки',many:'лет поддержки',hint:'50 000 ₽ в месяц на руки × 12 = 600 000 ₽ за год. Налоги и взносы оплачиваются дополнительно и в расчёт не включены.'},
+  grant:{cost:600000,part:'годовых выплат на руки',one:'год поддержки',few:'года поддержки',many:'лет поддержки',hint:'50 000 ₽ в месяц на руки × 12 = 600 000 ₽ за год.'},
   equipment:{cost:50000,part:'стоимости одного учебного комплекта',one:'учебный комплект',few:'учебных комплекта',many:'учебных комплектов',hint:'Условная стоимость одного учебного комплекта — 50 000 ₽.'},
   scholarship:{cost:60000,part:'стоимости годовой стипендии',one:'годовая стипендия',few:'годовые стипендии',many:'годовых стипендий',hint:'Условная стоимость годовой стипендии — 60 000 ₽.'}
 };
@@ -74,16 +74,17 @@ function donationForImpact(key,count,rate){
   return impactFromDonation(donation,rate);
 }
 /* IMPACT MODEL END */
-let mode='sum';
+let mode='goal';
 const numberFormat=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0});
 const money=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(n)+' ₽';
 function parseImpactNumber(id){const raw=$(id).value.trim().replace(/[\s\u00a0\u202f]/g,'').replace(',','.');return /^\d+(?:\.\d+)?$/.test(raw)?Number(raw):NaN;}
-function pluralImpact(n,item){const a=n%10,b=n%100;return a===1&&b!==11?item.one:a>=2&&a<=4&&(b<12||b>14)?item.few:item.many;}
 function failImpact(message){$('amountError').textContent=message;$('calcResult').textContent='—';$('resultPeriod').textContent='Проверьте сумму или параметры примера.';$('impactResults').hidden=true;$('calcAmount').setAttribute('aria-invalid','true');}
 function showImpactCard(key,result){const item=IMPACT_ITEMS[key],effect=result.items[key];
-  if(effect.whole>=1){$(key+'Value').textContent=numberFormat.format(effect.whole);$(key+'Unit').textContent=pluralImpact(effect.whole,item);$(key+'Remainder').textContent=key==='grant'?'Покрыта сумма выплат на руки; налоги и взносы сверх неё.':effect.remainder>=.01?'Остаток годового дохода: '+money(effect.remainder):'Полная стоимость выбранной помощи.';}
-  else{const percent=effect.ratio*100;$(key+'Value').textContent=percent>0&&percent<.1?'< 0,1 %':new Intl.NumberFormat('ru-RU',{maximumFractionDigits:1}).format(Math.floor(percent*10)/10)+' %';$(key+'Unit').textContent=item.part;$(key+'Remainder').textContent=percent===0?'По этому сценарию дохода на помощь нет.':'Часть стоимости можно покрыть доходом.';}
-  $(key+'Bar').style.width=effect.progress+'%';$(key+'Progress').setAttribute('aria-valuenow',String(Math.round(effect.progress*10)/10));
+  const percent=effect.ratio*100;
+  $(key+'Value').textContent=percent>0&&percent<.1?'< 0,1 %':percent>=100?new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(Math.round(percent))+' %':new Intl.NumberFormat('ru-RU',{maximumFractionDigits:1}).format(Math.floor(percent*10)/10)+' %';
+  $(key+'Unit').textContent=item.part;
+  $(key+'Remainder').textContent=percent===0?'По этому сценарию дохода на помощь нет.':percent>=100?'Доход покрывает полную условную стоимость помощи.':'Доля условной стоимости, которую может покрыть расчётный доход.';
+  $(key+'Bar').style.width=Math.min(100,effect.progress)+'%';$(key+'Progress').setAttribute('aria-valuenow',String(Math.round(Math.min(100,effect.progress)*10)/10));
 }
 function calculate(){const rate=parseImpactNumber('calcRate'),key=$('goalType').value,count=parseImpactNumber('goalCount'),donation=parseImpactNumber('calcAmount');
   $('goalCost').textContent=IMPACT_ITEMS[key]?.hint??'';
@@ -92,11 +93,11 @@ function calculate(){const rate=parseImpactNumber('calcRate'),key=$('goalType').
   if(mode==='sum'){if(!Number.isFinite(donation)||donation<.01||donation>1e12){failImpact('Введите сумму пожертвования от 0,01 до 1 трлн ₽.');return;}result=impactFromDonation(donation,rate);}
   else{if(!Number.isInteger(count)||count<1||count>100000){failImpact('Укажите целое количество от 1 до 100 000.');return;}if(rate===0){failImpact('При нулевой ставке помощь из дохода рассчитать нельзя.');return;}result=donationForImpact(key,count,rate);if(!result||result.donation>1e12){failImpact('Для выбранной цели требуется слишком большая сумма. Измените параметры примера.');return;}}
   $('amountError').textContent='';$('calcAmount').setAttribute('aria-invalid','false');$('impactResults').hidden=false;
-  $('resultTitle').textContent=mode==='sum'?'Расчётный доход за год до расходов':key==='grant'?'Ориентир капитала без налогов и взносов':'Ориентир суммы целевого капитала';
+  $('resultTitle').textContent=mode==='sum'?'Расчётный доход за год до расходов':'Ориентир суммы целевого капитала';
   $('calcResult').textContent=money(mode==='sum'?result.budget:result.donation);
-  $('resultPeriod').textContent=mode==='sum'?'от пожертвования '+money(result.donation)+' при доходности '+rate.toLocaleString('ru-RU')+' % за год':'чтобы направлять '+money(IMPACT_ITEMS[key].cost*count)+' в год на выбранную помощь при доходности '+rate.toLocaleString('ru-RU')+' % за год'+(key==='grant'?' (без налогов и взносов)':'');
-  $('impactHeading').textContent=mode==='sum'?'Этого дохода может хватить на':'Выбранный результат помощи за год';
-  $('impactAlternatives').textContent=mode==='sum'?'Каждая карточка — отдельный пример на основе дохода до расходов. Суммы, доступные программам, могут быть меньше. Результаты не суммируются.':'Показан один выбранный сценарий. Расчёт иллюстративный; доходность в будущем может отличаться.';
+  $('resultPeriod').textContent=mode==='sum'?'от пожертвования '+money(result.donation)+' при доходности '+rate.toLocaleString('ru-RU')+' % за год':'чтобы направлять '+money(IMPACT_ITEMS[key].cost*count)+' в год на выбранную помощь при доходности '+rate.toLocaleString('ru-RU')+' % за год';
+  $('impactHeading').textContent=mode==='sum'?'Какую долю помощи может покрыть доход':'Выбранный результат помощи за год';
+  $('impactAlternatives').textContent=mode==='sum'?'В карточках — доля стоимости условной помощи, которую может покрыть расчётный доход. Результаты по карточкам не суммируются.':'Показан один выбранный сценарий. Расчёт иллюстративный; доходность в будущем может отличаться.';
   document.querySelector('.impact-cards').classList.toggle('single-goal',mode==='goal');
   $('impactNavigation').hidden=mode==='goal';
   if(mode==='goal')document.querySelector('.impact-cards').scrollLeft=0;
@@ -107,7 +108,7 @@ if($('calcAmount')&&$('modeSum')&&$('modeGoal')&&$('calcRate')){
 $('modeSum').addEventListener('click',()=>setMode('sum'));$('modeGoal').addEventListener('click',()=>setMode('goal'));
 for(const id of ['calcAmount','calcRate','goalCount'])$(id).addEventListener('input',calculate);
 $('goalType').addEventListener('change',calculate);
-for(const id of ['amount100','amount500','amount1000'])$(id).addEventListener('click',()=>{$('calcAmount').value=numberFormat.format(Number($(id).dataset.amount));calculate();});
+for(const id of ['amount10','amount50','amount100']){const btn=$(id);if(btn)btn.addEventListener('click',()=>{$('calcAmount').value=numberFormat.format(Number(btn.dataset.amount));calculate();});}
 $('calcAmount').addEventListener('blur',()=>{const n=parseImpactNumber('calcAmount');if(n>=.01&&Number.isFinite(n))$('calcAmount').value=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(n);});
 }
 

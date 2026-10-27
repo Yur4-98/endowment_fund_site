@@ -20,25 +20,25 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 	<div class="calc-inner impact-calc">
 		<p class="impact-intro">Посмотрите, какую помощь может дать доход от вашего пожертвования. Или выберите результат и узнайте, какая сумма целевого капитала для него нужна.</p>
 		<div class="mode-row" role="group" aria-label="Режим расчёта">
-			<button type="button" id="modeSum" aria-pressed="true">У меня есть сумма</button>
-			<button type="button" id="modeGoal" aria-pressed="false">Мне нужен результат</button>
+			<button type="button" id="modeGoal" aria-pressed="true">Мне нужен результат</button>
+			<button type="button" id="modeSum" aria-pressed="false">У меня есть сумма</button>
 		</div>
 		<div class="impact-top">
 			<div class="impact-inputs">
-				<div id="sumFields">
+				<div id="sumFields" hidden>
 					<label for="calcAmount">Моё пожертвование, ₽</label>
 					<input type="text" id="calcAmount" inputmode="decimal" value="100 000" aria-describedby="amountError">
 					<div class="amount-options" aria-label="Примеры сумм">
+						<button type="button" id="amount10" data-amount="10000">10 тыс.</button>
+						<button type="button" id="amount50" data-amount="50000">50 тыс.</button>
 						<button type="button" id="amount100" data-amount="100000">100 тыс.</button>
-						<button type="button" id="amount500" data-amount="500000">500 тыс.</button>
-						<button type="button" id="amount1000" data-amount="1000000">1 млн</button>
 					</div>
 				</div>
-				<div id="goalFields" hidden>
+				<div id="goalFields">
 					<label for="goalType">Какую помощь я хочу финансировать ежегодно</label>
 					<select id="goalType">
 						<option value="veterans">Выплата преподавателю-ветерану</option>
-						<option value="grant">Год выплат молодому преподавателю (без налогов и взносов)</option>
+						<option value="grant">Год выплат молодому преподавателю</option>
 						<option value="equipment">Учебный комплект оборудования</option>
 						<option value="scholarship">Годовая стипендия курсанту или студенту</option>
 					</select>
@@ -57,10 +57,10 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 		</div>
 		<div id="impactResults" class="impact-results" aria-live="polite">
 			<div class="impact-result-heading">
-				<h3 id="impactHeading">Этого дохода может хватить на</h3>
+				<h3 id="impactHeading">Какую долю помощи может покрыть доход</h3>
 				<span class="example-label">Сценарии расчёта</span>
 			</div>
-			<p class="impact-alternatives" id="impactAlternatives">Каждая карточка — отдельный пример на основе дохода до расходов. Суммы, доступные программам, могут быть меньше. Результаты не суммируются.</p>
+			<p class="impact-alternatives" id="impactAlternatives">В карточках — доля стоимости условной помощи, которую может покрыть расчётный доход. Результаты по карточкам не суммируются; суммы для программ могут быть меньше.</p>
 			<div class="impact-cards">
 				<article class="impact-card" id="cardVeterans">
 					<span class="impact-index">01</span>
@@ -111,7 +111,7 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 		<details class="impact-assumptions">
 			<summary>Как устроен пример расчёта</summary>
 			<p>По данным фонда, фактическая доходность целевого капитала за 2025 год составила 27 %. Калькулятор применяет этот исторический показатель к указанной сумме только для иллюстрации. Это не прогноз и не гарантия доходности или выплат: расходы, порядок распределения дохода и будущие результаты могут изменить сумму, доступную программам.</p>
-			<p>Для молодого преподавателя фонд выплачивает 50 000 ₽ в месяц на руки — 600 000 ₽ за год. Налоги и взносы оплачиваются дополнительно, их размер здесь не задан. Поэтому показанная сумма капитала для этого сценария — нижняя граница без налогов и взносов. Выплата ветерану (10 000 ₽), учебный комплект (50 000 ₽) и годовая стипендия (60 000 ₽) остаются условными примерами.</p>
+			<p>Для молодого преподавателя ориентир фонда — 50 000 ₽ в месяц на руки, 600 000 ₽ за год. Выплата ветерану (10 000 ₽), учебный комплект (50 000 ₽) и годовая стипендия (60 000 ₽) — условные примеры для расчёта доли покрытия.</p>
 			<label for="calcRate">Доходность для примера, % годовых</label>
 			<div class="impact-rate-row">
 				<input type="text" id="calcRate" inputmode="decimal" value="27">

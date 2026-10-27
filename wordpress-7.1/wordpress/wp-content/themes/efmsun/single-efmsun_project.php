@@ -23,7 +23,7 @@ while ( have_posts() ) :
 		<div class="container prose-page">
 			<?php the_content(); ?>
 			<p>
-				<a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Сделать вклад в капитал</a>
+				<a class="btn btn-primary" href="<?php echo esc_url( efmsun_donate_url() ); ?>">Поддержать фонд</a>
 				<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'proekty' ) ); ?>">Все проекты</a>
 			</p>
 		</div>

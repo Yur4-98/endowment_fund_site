@@ -29,6 +29,26 @@ function efmsun_setup() {
 }
 add_action( 'after_setup_theme', 'efmsun_setup' );
 
+function efmsun_favicon() {
+	$icon = EFMSUN_URI . '/assets/img/logo.jpg';
+	echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/jpeg">' . "\n";
+	echo '<link rel="shortcut icon" href="' . esc_url( $icon ) . '" type="image/jpeg">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( $icon ) . '">' . "\n";
+}
+add_action( 'wp_head', 'efmsun_favicon', 1 );
+
+function efmsun_ensure_oferta_template() {
+	if ( get_option( 'efmsun_oferta_template_v1' ) === '1' ) {
+		return;
+	}
+	$page = get_page_by_path( 'oferta' );
+	if ( $page ) {
+		update_post_meta( $page->ID, '_wp_page_template', 'page-oferta.php' );
+	}
+	update_option( 'efmsun_oferta_template_v1', '1' );
+}
+add_action( 'init', 'efmsun_ensure_oferta_template', 30 );
+
 function efmsun_scripts() {
 	wp_enqueue_style(
 		'efmsun-fonts',
@@ -36,8 +56,7 @@ function efmsun_scripts() {
 		array(),
 		null
 	);
-	wp_enqueue_style( 'efmsun-waves', EFMSUN_URI . '/assets/css/marine-waves.css', array(), EFMSUN_VERSION );
-	wp_enqueue_style( 'efmsun-theme', EFMSUN_URI . '/assets/css/theme.css', array( 'efmsun-waves' ), EFMSUN_VERSION );
+	wp_enqueue_style( 'efmsun-theme', EFMSUN_URI . '/assets/css/theme.css', array(), EFMSUN_VERSION );
 	wp_enqueue_script( 'efmsun-theme', EFMSUN_URI . '/assets/js/theme.js', array(), EFMSUN_VERSION, true );
 
 	$lines = array_values( array_filter( array(

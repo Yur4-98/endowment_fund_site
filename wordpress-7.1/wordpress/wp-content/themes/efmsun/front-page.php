@@ -59,10 +59,6 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 			</div>
 			<?php get_template_part( 'template-parts/home', 'ship' ); ?>
 		</div>
-		<div class="hero-bottom">
-			<a href="#programs">01 — Направления финансирования</a>
-			<span>Поддержите будущее морского образования</span>
-		</div>
 	</div>
 </section>
 
@@ -92,6 +88,9 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 		<div class="program-note">
 			<a class="textlink" href="<?php echo esc_url( $reports_url ); ?>">Результаты поддержки</a>
 		</div>
+		<p class="section-support">
+			<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Поддержать фонд</a>
+		</p>
 	</div>
 </section>
 
@@ -102,10 +101,13 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 				<p class="eyebrow">02 / Целевой капитал</p>
 				<h2 id="mechanismTitle">Как это работает</h2>
 			</div>
-			<p class="intro">Пожертвования пополняют целевой капитал. Его передают в управление, а часть полученного дохода после расходов направляют на программы университета. Основная сумма остаётся работать дальше.</p>
+			<p class="intro">Пожертвования пополняют целевой капитал фонда. Капитал передаётся в доверительное управление: основная сумма сохраняется и продолжает работать. Часть полученного дохода после предусмотренных расходов направляется на программы университета — поддержку преподавателей, гранты, оборудование и стипендии. Так один вклад помогает не разово, а на годы вперёд.</p>
 		</div>
 		<?php get_template_part( 'template-parts/home', 'diagram' ); ?>
 		<?php get_template_part( 'template-parts/home', 'calculator' ); ?>
+		<p class="section-support">
+			<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Поддержать фонд</a>
+		</p>
 	</div>
 </section>
 
@@ -115,7 +117,7 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 			<p class="eyebrow">03 / Доверие и участие</p>
 			<h2 id="trustTitle">Поддержать фонд.<br>Продолжить историю.</h2>
 			<p>Выберите удобный способ участия или свяжитесь с фондом, чтобы обсудить своё пожертвование.</p>
-			<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Как я могу помочь</a>
+			<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Поддержать фонд</a>
 		</div>
 		<div class="trust-links">
 			<a class="trust-link" href="<?php echo esc_url( $reports_url ); ?>">

@@ -20,10 +20,14 @@
 	<header class="site-header">
 		<div class="container header-inner">
 			<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Эндаумент-фонд — Фонд целевого капитала МГУ имени адмирала Г.И. Невельского — главная">
-				<span class="brand-mark" aria-hidden="true">
-					<svg viewBox="0 0 42 46" fill="none" stroke="currentColor" stroke-width="1.3">
-						<path d="M5 35h33l-8 7H13L5 35ZM22 4v28M20 7L7 29h13V7ZM25 12l11 17H25V12M2 44c6-3 9 2 15 0s10 2 16 0 7 0 7 0"/>
-					</svg>
+				<span class="brand-mark">
+					<img
+						src="<?php echo esc_url( EFMSUN_URI . '/assets/img/logo.jpg' ); ?>"
+						alt=""
+						width="96"
+						height="96"
+						decoding="async"
+					>
 				</span>
 				<span class="brand-text">
 					<span class="brand-name">Эндаумент-фонд</span>

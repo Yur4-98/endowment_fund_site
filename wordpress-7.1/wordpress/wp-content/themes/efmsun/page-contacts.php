@@ -8,7 +8,7 @@
 get_header();
 
 $email   = get_theme_mod( 'efmsun_email', 'info@efmsun.ru' );
-$phone   = get_theme_mod( 'efmsun_phone', '+7 (423) 000-00-00' );
+$phone   = get_theme_mod( 'efmsun_phone', '+7 (984) 211-45-72' );
 $address = get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' );
 $director = get_theme_mod( 'efmsun_director', 'Директор фонда (заглушка)' );
 ?>
@@ -27,7 +27,7 @@ $director = get_theme_mod( 'efmsun_director', 'Директор фонда (за
 			<p class="footer-label">Почта</p>
 			<p><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></p>
 			<p class="footer-label">Телефон</p>
-			<p><?php echo esc_html( $phone ); ?></p>
+			<p><a href="tel:+79842114572"><?php echo esc_html( $phone ); ?></a></p>
 			<p class="footer-label">Адрес</p>
 			<p><?php echo esc_html( $address ); ?></p>
 			<p class="footer-label">Директор</p>
@@ -37,6 +37,9 @@ $director = get_theme_mod( 'efmsun_director', 'Директор фонда (за
 		<div class="card card-plain">
 			<?php efmsun_feedback_form( array( 'title' => 'Форма обратной связи', 'topic' => 'Контакты' ) ); ?>
 		</div>
+	</div>
+	<div class="container">
+		<?php get_template_part( 'template-parts/section', 'support' ); ?>
 	</div>
 </section>
 

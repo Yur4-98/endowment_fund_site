@@ -110,4 +110,42 @@
       });
     });
   });
+
+  // Remember scroll before leaving home for reports; restore on back.
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+  document.querySelectorAll('a[href*="otchetnost"]').forEach(function (link) {
+    link.addEventListener("click", function () {
+      try {
+        sessionStorage.setItem(
+          "efmsunScroll",
+          JSON.stringify({ path: location.pathname + location.search + location.hash, y: window.scrollY })
+        );
+      } catch (e) {}
+    });
+  });
+  window.addEventListener("pageshow", function () {
+    try {
+      var raw = sessionStorage.getItem("efmsunScroll");
+      if (!raw) {
+        return;
+      }
+      var data = JSON.parse(raw);
+      var here = location.pathname + location.search + location.hash;
+      if (data && data.path && here.indexOf("otchetnost") === -1) {
+        window.scrollTo(0, data.y || 0);
+        sessionStorage.removeItem("efmsunScroll");
+      }
+    } catch (e) {}
+  });
+
+  document.querySelectorAll(".js-back-with-scroll").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      if (window.history.length > 1) {
+        event.preventDefault();
+        history.back();
+      }
+    });
+  });
 })();

@@ -80,10 +80,10 @@ function efmsun_seed_content() {
 		'proekty'        => array( 'Проекты', 'page-projects' ),
 		'otchetnost'     => array( 'Отчётность', 'page-reports' ),
 		'kontakty'       => array( 'Контакты', 'page-contacts' ),
-		'sdelat-vklad'   => array( 'Сделать вклад', 'page-donate' ),
+		'sdelat-vklad'   => array( 'Поддержать фонд', 'page-donate' ),
 		'stat-daritelem' => array( 'Стать дарителем', 'page-donor' ),
 		'napravleniya'   => array( 'Направления финансирования', 'page-directions' ),
-		'oferta'         => array( 'Оферта', '' ),
+		'oferta'         => array( 'Договор пожертвования', 'page-oferta' ),
 		'politika-pd'    => array( 'Политика обработки ПД', '' ),
 		'novosti'        => array( 'Новости', '' ),
 	);
@@ -126,7 +126,7 @@ function efmsun_seed_v2() {
 		'faq'                      => array( 'FAQ', 'page-faq', '' ),
 		'dokumenty'                => array( 'Официальные документы', 'page-documents', '' ),
 		'politika-pozhertvovaniy'  => array( 'Политика обработки пожертвований', '', efmsun_seed_page_text( 'politika-pozhertvovaniy' ) ),
-		'oferta'                   => array( 'Публичная оферта', '', efmsun_seed_page_text( 'oferta' ) ),
+		'oferta'                   => array( 'Договор пожертвования', 'page-oferta', '' ),
 		'politika-pd'              => array( 'Политика обработки ПД', '', efmsun_seed_page_text( 'politika-pd' ) ),
 	);
 

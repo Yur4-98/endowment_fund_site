@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Сделать вклад
+ * Template Name: Поддержать фонд
  *
  * @package efmsun
  */
@@ -14,7 +14,7 @@ $leyka_ready = efmsun_leyka_active() && $campaign_id;
 <section class="page-hero">
 	<div class="container">
 		<p class="eyebrow">Пожертвование</p>
-		<h1>Сделать вклад в целевой капитал</h1>
+		<h1>Поддержать фонд</h1>
 		<p class="page-lead">Средства идут в общий капитал фонда, не на отдельный проект. Онлайн-оплата картой через Сбер подключается в Лейке, когда банк выдаст логин и пароль API.</p>
 	</div>
 </section>

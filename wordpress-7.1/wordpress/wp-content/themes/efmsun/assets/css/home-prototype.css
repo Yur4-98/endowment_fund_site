@@ -69,3 +69,39 @@ body.efmsun.efmsun-home, body.efmsun.home { background: var(--paper, #faf9f5); }
 }
 .proto-home a.trust-link:hover strong { color: var(--blue); }
 body.home .site-main { padding-bottom: 0; }
+
+/* v5 feedback: mechanism text, diagram labels, section CTA */
+.proto-home .mechanism .intro {
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 500;
+  max-width: 52ch;
+}
+.diagram-desktop .stage-visual.active .stage-title {
+  font-size: 20px;
+  font-weight: 700;
+  fill: var(--navy);
+}
+.diagram-desktop .stage-visual.active .stage-note {
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+.mobile-step.active strong {
+  font-weight: 700;
+  font-size: 1.05em;
+  color: var(--navy);
+}
+.mobile-step.active span {
+  color: var(--ink);
+  font-weight: 500;
+}
+.proto-home .section-support {
+  margin-top: 28px;
+  display: flex;
+  justify-content: flex-start;
+}
+.proto-home .section-support .btn {
+  text-decoration: none;
+}
