@@ -105,3 +105,38 @@ body.home .site-main { padding-bottom: 0; }
 .proto-home .section-support .btn {
   text-decoration: none;
 }
+
+/* Body text +1px; headings keep clamp/own sizes */
+.efmsun-home,
+.proto-home {
+  font-size: 17px;
+}
+.efmsun-home .hero-copy > p,
+.proto-home .hero-copy > p {
+  font-size: 18px;
+}
+.efmsun-home .program p,
+.proto-home .program p {
+  font-size: 15px;
+}
+.efmsun-home .trust p,
+.proto-home .trust p {
+  font-size: 17px;
+}
+.efmsun-home .impact-intro,
+.proto-home .impact-intro {
+  font-size: 16px;
+}
+.efmsun-home .eyebrow,
+.proto-home .eyebrow {
+  font-size: 13px;
+}
+.efmsun-home .section-head .intro,
+.proto-home .section-head .intro {
+  font-size: 16px;
+}
+.efmsun-home .impact-cost,
+.proto-home .impact-cost {
+  color: #b42318;
+  font-weight: 700;
+}

@@ -29,8 +29,17 @@ body.efmsun {
   color: var(--ink);
   background: var(--paper);
   font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  font-size: 17px; /* body +1px; headings keep own sizes */
   line-height: 1.55;
   overscroll-behavior-y: none;
+}
+
+body.efmsun .about-page,
+body.efmsun .proto-sections,
+body.efmsun .proto-sections-host,
+body.efmsun .proto-home,
+body.efmsun .efmsun-home {
+  font-size: 17px !important;
 }
 
 body.efmsun::before {
@@ -805,9 +814,48 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 
 .impact-goal {
   margin: 6px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--ink, #183447);
+}
+
+.impact-cost {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #b42318;
+}
+
+.impact-card .impact-value {
+  margin-top: 4px;
+}
+
+.about-frank {
+  margin: 0 0 40px;
+  padding: 28px 0 8px;
+  border-top: 1px solid var(--line, #d5dfe2);
+}
+
+.about-frank .eyebrow {
+  margin-bottom: 12px;
+}
+
+.about-frank .frank-role {
+  margin: 0 0 18px;
+  color: var(--muted, #536c7b);
+  font-size: 15px;
+}
+
+.about-frank .copy {
+  margin: 0 0 14px;
+  max-width: 720px;
+}
+
+.about-frank .frank-sign {
+  margin-top: 22px;
+  color: var(--muted, #536c7b);
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .leyka-form-wrap {

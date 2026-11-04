@@ -65,40 +65,40 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 				<article class="impact-card" id="cardVeterans">
 					<span class="impact-index">01</span>
 					<h4>Поддержка одного преподавателя-ветерана</h4>
+					<p class="impact-cost">Одна условная выплата — 10 000 ₽</p>
 					<p class="impact-value" id="veteransValue">1,8 %</p>
 					<p class="impact-unit" id="veteransUnit">годовой цели поддержки</p>
 					<div class="impact-progress" role="progressbar" id="veteransProgress" aria-label="Доля годовой цели поддержки" aria-valuemin="0" aria-valuemax="100" aria-valuenow="1.8"><span id="veteransBar" style="width:1.8%"></span></div>
-					<p class="impact-cost">Одна условная выплата — 10 000 ₽</p>
 					<p class="impact-goal">Годовая цель — 150 000 ₽</p>
 					<p class="impact-remainder" id="veteransRemainder"></p>
 				</article>
 				<article class="impact-card" id="cardGrant">
 					<span class="impact-index">02</span>
 					<h4>Поддержка молодого преподавателя</h4>
+					<p class="impact-cost">50 000 ₽ в месяц после удержания налогов · 900 000 ₽ в год на одного человека.</p>
 					<p class="impact-value" id="grantValue">0,3 %</p>
 					<p class="impact-unit" id="grantUnit">годовой поддержки молодого преподавателя</p>
 					<div class="impact-progress" role="progressbar" id="grantProgress" aria-label="Доля годовой поддержки молодого преподавателя" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.3"><span id="grantBar" style="width:0.3%"></span></div>
-					<p class="impact-cost">50 000 ₽ в месяц после удержания налогов · 900 000 ₽ в год на одного человека.</p>
 					<p class="impact-goal">Годовая цель — 900 000 ₽</p>
 					<p class="impact-remainder" id="grantRemainder"></p>
 				</article>
 				<article class="impact-card" id="cardEquipment">
 					<span class="impact-index">03</span>
 					<h4>Обновление оборудования и учебной инфраструктуры</h4>
+					<p class="impact-cost">Один условный комплект — 50 000 ₽</p>
 					<p class="impact-value" id="equipmentValue">0,034 %</p>
 					<p class="impact-unit" id="equipmentUnit">годовой цели обновления инфраструктуры</p>
 					<div class="impact-progress" role="progressbar" id="equipmentProgress" aria-label="Доля годовой цели обновления" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.034"><span id="equipmentBar" style="width:0.034%"></span></div>
-					<p class="impact-cost">Один условный комплект — 50 000 ₽</p>
 					<p class="impact-goal">Годовая цель — 8 000 000 ₽</p>
 					<p class="impact-remainder" id="equipmentRemainder"></p>
 				</article>
 				<article class="impact-card" id="cardScholarship">
 					<span class="impact-index">04</span>
 					<h4>Стипендия курсантам и студентам, обучающимся на отлично</h4>
+					<p class="impact-cost">Одна условная годовая стипендия — 60 000 ₽</p>
 					<p class="impact-value" id="scholarshipValue">16,6 %</p>
 					<p class="impact-unit" id="scholarshipUnit">стоимости годовой стипендии</p>
 					<div class="impact-progress" role="progressbar" id="scholarshipProgress" aria-label="Доля стоимости годовой стипендии" aria-valuemin="0" aria-valuemax="100" aria-valuenow="16.7"><span id="scholarshipBar" style="width:16.7%"></span></div>
-					<p class="impact-cost">Одна условная годовая стипендия — 60 000 ₽</p>
 					<p class="impact-goal">Годовая цель — 60 000 ₽</p>
 					<p class="impact-remainder" id="scholarshipRemainder"></p>
 				</article>
