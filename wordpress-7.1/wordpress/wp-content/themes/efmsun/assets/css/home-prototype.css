@@ -139,4 +139,83 @@ body.home .site-main { padding-bottom: 0; }
 .proto-home .impact-cost {
   color: #b42318;
   font-weight: 700;
+  font-size: 15px;
+}
+
+/* Captions / small UI text +1px */
+.efmsun-home .textlink,
+.proto-home .textlink {
+  font-size: 15px;
+}
+.efmsun-home .program .textlink,
+.proto-home .program .textlink,
+.efmsun-home .hero-actions .textlink,
+.proto-home .hero-actions .textlink {
+  font-size: 14px;
+}
+.efmsun-home .impact-alternatives,
+.proto-home .impact-alternatives {
+  font-size: 13px;
+}
+.efmsun-home .impact-hint,
+.proto-home .impact-hint,
+.efmsun-home .impact-model-note,
+.proto-home .impact-model-note,
+.efmsun-home .program-note,
+.proto-home .program-note,
+.efmsun-home .calc-disclaimer,
+.proto-home .calc-disclaimer,
+.efmsun-home .section-num,
+.proto-home .section-num,
+.efmsun-home .program .index,
+.proto-home .program .index {
+  font-size: 13px;
+}
+.efmsun-home .impact-unit,
+.proto-home .impact-unit {
+  font-size: 14px;
+}
+.efmsun-home .impact-remainder,
+.proto-home .impact-remainder,
+.efmsun-home .impact-index,
+.proto-home .impact-index,
+.efmsun-home .example-label,
+.proto-home .example-label,
+.efmsun-home .impact-summary .eyebrow,
+.proto-home .impact-summary .eyebrow,
+.efmsun-home .calc-result .eyebrow,
+.proto-home .calc-result .eyebrow,
+.efmsun-home .motion-label,
+.proto-home .motion-label {
+  font-size: 12px;
+}
+.efmsun-home .impact-assumptions > summary,
+.proto-home .impact-assumptions > summary,
+.efmsun-home .impact-assumptions p,
+.proto-home .impact-assumptions p,
+.efmsun-home .impact-assumptions label,
+.proto-home .impact-assumptions label,
+.efmsun-home .impact-rate-row,
+.proto-home .impact-rate-row,
+.efmsun-home .impact-actions .btn,
+.efmsun-home .impact-actions .textlink,
+.proto-home .impact-actions .btn,
+.proto-home .impact-actions .textlink,
+.efmsun-home .amount-options button,
+.proto-home .amount-options button,
+.efmsun-home .impact-inputs label,
+.proto-home .impact-inputs label,
+.efmsun-home .diagram-footer p,
+.proto-home .diagram-footer p,
+.efmsun-home .trust-link small,
+.proto-home .trust-link small {
+  font-size: 13px;
+}
+.efmsun-home .impact-goal,
+.proto-home .impact-goal {
+  font-size: 15px;
+}
+.efmsun-home .diagram-desktop .stage-note,
+.proto-home .diagram-desktop .stage-note {
+  font-size: 14px;
 }

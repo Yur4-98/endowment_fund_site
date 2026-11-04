@@ -12,3 +12,35 @@
 @media (max-width: 680px) {
   .proto-sections .wrap { width: calc(100% - 40px); }
 }
+
+/* Captions / small UI text +1px */
+.proto-sections .eyebrow { font-size: 12px; }
+.proto-sections .link { font-size: 15px; }
+.proto-sections .small { font-size: 14px; }
+.proto-sections .badge { font-size: 11px; }
+.proto-sections .breadcrumb { font-size: 13px; }
+.proto-sections .section-title p,
+.proto-sections .panel p,
+.proto-sections .callout p,
+.proto-sections .project-intro { font-size: 15px; }
+.proto-sections .prototype-note,
+.proto-sections .rule-list li span:last-child,
+.proto-sections .governance .index,
+.proto-sections .bankways,
+.proto-sections .doc-row p,
+.proto-sections .doc-row button,
+.proto-sections .news-date,
+.proto-sections .consent,
+.proto-sections .dialog-meta,
+.proto-sections footer p,
+.proto-sections footer .foot-links { font-size: 13px; }
+.proto-sections .doc-mark,
+.proto-sections .foot-bottom { font-size: 12px; }
+.proto-sections .mini-route { font-size: 15px; }
+.proto-sections .pill-row button,
+.proto-sections .form-card > p,
+.proto-sections .field,
+.proto-sections .contract-row .btn { font-size: 14px; }
+.proto-sections .faq .answer { font-size: 16px; }
+.proto-sections .about-page .governance-note,
+.proto-sections .governance-note { font-size: 13px; }

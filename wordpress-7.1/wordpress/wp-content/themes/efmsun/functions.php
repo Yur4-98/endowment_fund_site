@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EFMSUN_VERSION', '0.3.15' );
+define( 'EFMSUN_VERSION', '0.3.16' );
 define( 'EFMSUN_DIR', get_template_directory() );
 define( 'EFMSUN_URI', get_template_directory_uri() );
 
