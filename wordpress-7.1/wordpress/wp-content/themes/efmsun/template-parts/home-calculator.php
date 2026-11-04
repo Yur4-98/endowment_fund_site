@@ -44,7 +44,7 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 					</select>
 					<label for="goalCount" class="count-label">Количество за год</label>
 					<input type="number" id="goalCount" value="1" min="1" max="100000" step="1">
-					<p class="impact-hint" id="goalCost">Условная стоимость одной выплаты — 10 000 ₽.</p>
+					<p class="impact-hint" id="goalCost">Одна условная выплата — 10 000 ₽. Годовая цель — 150 000 ₽.</p>
 				</div>
 				<div class="error" id="amountError" role="status"></div>
 			</div>
@@ -64,29 +64,32 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 			<div class="impact-cards">
 				<article class="impact-card" id="cardVeterans">
 					<span class="impact-index">01</span>
-					<h4>Поддержка преподавателей-ветеранов</h4>
-					<p class="impact-value" id="veteransValue">1</p>
-					<p class="impact-unit" id="veteransUnit">выплата помощи</p>
-					<div class="impact-progress" role="progressbar" id="veteransProgress" aria-label="Доля стоимости одной выплаты" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span id="veteransBar" style="width:100%"></span></div>
+					<h4>Поддержка одного преподавателя-ветерана</h4>
+					<p class="impact-value" id="veteransValue">1,8 %</p>
+					<p class="impact-unit" id="veteransUnit">годовой цели поддержки</p>
+					<div class="impact-progress" role="progressbar" id="veteransProgress" aria-label="Доля годовой цели поддержки" aria-valuemin="0" aria-valuemax="100" aria-valuenow="1.8"><span id="veteransBar" style="width:1.8%"></span></div>
 					<p class="impact-cost">Одна условная выплата — 10 000 ₽</p>
+					<p class="impact-goal">Годовая цель — 150 000 ₽</p>
 					<p class="impact-remainder" id="veteransRemainder"></p>
 				</article>
 				<article class="impact-card" id="cardGrant">
 					<span class="impact-index">02</span>
 					<h4>Поддержка молодого преподавателя</h4>
-					<p class="impact-value" id="grantValue">4,5 %</p>
-					<p class="impact-unit" id="grantUnit">годовых выплат на руки</p>
-					<div class="impact-progress" role="progressbar" id="grantProgress" aria-label="Доля годовых выплат на руки" aria-valuemin="0" aria-valuemax="100" aria-valuenow="4.5"><span id="grantBar" style="width:4.5%"></span></div>
-					<p class="impact-cost">50 000 ₽ в месяц на руки · 600 000 ₽ в год. Налоги и взносы сверх этой суммы.</p>
+					<p class="impact-value" id="grantValue">0,3 %</p>
+					<p class="impact-unit" id="grantUnit">годовой поддержки молодого преподавателя</p>
+					<div class="impact-progress" role="progressbar" id="grantProgress" aria-label="Доля годовой поддержки молодого преподавателя" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.3"><span id="grantBar" style="width:0.3%"></span></div>
+					<p class="impact-cost">50 000 ₽ в месяц после удержания налогов · 900 000 ₽ в год на одного человека.</p>
+					<p class="impact-goal">Годовая цель — 900 000 ₽</p>
 					<p class="impact-remainder" id="grantRemainder"></p>
 				</article>
 				<article class="impact-card" id="cardEquipment">
 					<span class="impact-index">03</span>
 					<h4>Обновление оборудования и учебной инфраструктуры</h4>
-					<p class="impact-value" id="equipmentValue">20 %</p>
-					<p class="impact-unit" id="equipmentUnit">стоимости одного учебного комплекта</p>
-					<div class="impact-progress" role="progressbar" id="equipmentProgress" aria-label="Доля стоимости одного комплекта" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20"><span id="equipmentBar" style="width:20%"></span></div>
+					<p class="impact-value" id="equipmentValue">0,034 %</p>
+					<p class="impact-unit" id="equipmentUnit">годовой цели обновления инфраструктуры</p>
+					<div class="impact-progress" role="progressbar" id="equipmentProgress" aria-label="Доля годовой цели обновления" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.034"><span id="equipmentBar" style="width:0.034%"></span></div>
 					<p class="impact-cost">Один условный комплект — 50 000 ₽</p>
+					<p class="impact-goal">Годовая цель — 8 000 000 ₽</p>
 					<p class="impact-remainder" id="equipmentRemainder"></p>
 				</article>
 				<article class="impact-card" id="cardScholarship">
@@ -96,6 +99,7 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 					<p class="impact-unit" id="scholarshipUnit">стоимости годовой стипендии</p>
 					<div class="impact-progress" role="progressbar" id="scholarshipProgress" aria-label="Доля стоимости годовой стипендии" aria-valuemin="0" aria-valuemax="100" aria-valuenow="16.7"><span id="scholarshipBar" style="width:16.7%"></span></div>
 					<p class="impact-cost">Одна условная годовая стипендия — 60 000 ₽</p>
+					<p class="impact-goal">Годовая цель — 60 000 ₽</p>
 					<p class="impact-remainder" id="scholarshipRemainder"></p>
 				</article>
 			</div>
@@ -111,7 +115,7 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 		<details class="impact-assumptions">
 			<summary>Как устроен пример расчёта</summary>
 			<p>По данным фонда, фактическая доходность целевого капитала за 2025 год составила 27 %. Калькулятор применяет этот исторический показатель к указанной сумме только для иллюстрации. Это не прогноз и не гарантия доходности или выплат: расходы, порядок распределения дохода и будущие результаты могут изменить сумму, доступную программам.</p>
-			<p>Для молодого преподавателя ориентир фонда — 50 000 ₽ в месяц на руки, 600 000 ₽ за год. Выплата ветерану (10 000 ₽), учебный комплект (50 000 ₽) и годовая стипендия (60 000 ₽) — условные примеры для расчёта доли покрытия.</p>
+			<p>Для молодого преподавателя ориентир фонда — 50 000 ₽ в месяц после удержания налогов, 900 000 ₽ в год на одного человека. В карточках указаны условная выплата/комплект и годовая цель, по которой считается доля покрытия: ветераны — 150 000 ₽, молодой преподаватель — 900 000 ₽, оборудование — 8 000 000 ₽, стипендия — 60 000 ₽.</p>
 			<label for="calcRate">Доходность для примера, % годовых</label>
 			<div class="impact-rate-row">
 				<input type="text" id="calcRate" inputmode="decimal" value="27">

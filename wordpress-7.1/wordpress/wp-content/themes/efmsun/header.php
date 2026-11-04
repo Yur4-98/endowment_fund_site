@@ -22,7 +22,7 @@
 			<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Эндаумент-фонд — Фонд целевого капитала МГУ имени адмирала Г.И. Невельского — главная">
 				<span class="brand-mark">
 					<img
-						src="<?php echo esc_url( EFMSUN_URI . '/assets/img/logo.jpg' ); ?>"
+						src="<?php echo esc_url( EFMSUN_URI . '/assets/img/logo.jpg?v=0.3.6' ); ?>"
 						alt=""
 						width="96"
 						height="96"

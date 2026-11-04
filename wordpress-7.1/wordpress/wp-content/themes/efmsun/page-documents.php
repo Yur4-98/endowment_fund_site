@@ -15,6 +15,18 @@ $bundled = array(
 		'url'   => EFMSUN_URI . '/assets/docs/ustav.pdf',
 	),
 	array(
+		'title' => 'Свидетельство о государственной регистрации',
+		'note'  => 'Дата выдачи: 2 ноября 2015 года',
+		'type'  => 'Регистрация',
+		'url'   => EFMSUN_URI . '/assets/docs/svidetelstvo-gos-registracii.pdf',
+	),
+	array(
+		'title' => 'Федеральный закон № 275-ФЗ',
+		'note'  => 'О порядке формирования и использования целевого капитала некоммерческих организаций',
+		'type'  => 'Закон',
+		'url'   => 'https://www.consultant.ru/document/cons_doc_LAW_64939/',
+	),
+	array(
 		'title' => 'Договор пожертвования',
 		'note'  => 'Шаблон договора (DOCX)',
 		'type'  => 'Для пожертвования',
@@ -49,7 +61,7 @@ $query = new WP_Query( array(
 						<h2><?php echo esc_html( $item['title'] ); ?></h2>
 						<p><?php echo esc_html( $item['note'] ); ?></p>
 					</div>
-					<a class="btn btn-line" href="<?php echo esc_url( $item['url'] ); ?>" download>Скачать</a>
+					<a class="btn btn-line" href="<?php echo esc_url( $item['url'] ); ?>" target="_blank" rel="noopener noreferrer">Открыть</a>
 				</article>
 			<?php endforeach; ?>
 
@@ -57,22 +69,25 @@ $query = new WP_Query( array(
 				<?php
 				while ( $query->have_posts() ) :
 					$query->the_post();
+					$title = get_the_title();
+					if ( false !== mb_stripos( $title, 'заглушка' ) ) {
+						continue;
+					}
 					$file = get_post_meta( get_the_ID(), 'efmsun_file_url', true );
 					$type = get_post_meta( get_the_ID(), 'efmsun_doc_type', true );
+					if ( ! $file ) {
+						continue;
+					}
 					?>
 					<article class="report-row">
 						<div>
 							<?php if ( $type ) : ?>
 								<p class="news-date"><?php echo esc_html( $type ); ?></p>
 							<?php endif; ?>
-							<h2><?php the_title(); ?></h2>
+							<h2><?php echo esc_html( $title ); ?></h2>
 							<p><?php echo esc_html( get_the_excerpt() ); ?></p>
 						</div>
-						<?php if ( $file ) : ?>
-							<a class="btn btn-line" href="<?php echo esc_url( $file ); ?>">Скачать</a>
-						<?php else : ?>
-							<span class="btn btn-line is-disabled">Файл скоро</span>
-						<?php endif; ?>
+						<a class="btn btn-line" href="<?php echo esc_url( $file ); ?>" target="_blank" rel="noopener noreferrer">Открыть</a>
 					</article>
 				<?php endwhile; ?>
 				<?php wp_reset_postdata(); ?>

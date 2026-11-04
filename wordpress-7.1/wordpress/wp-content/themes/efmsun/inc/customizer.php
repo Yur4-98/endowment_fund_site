@@ -9,6 +9,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * URL картинки направления: сначала медиатека (кастомайзер), иначе файл в теме.
+ *
+ * @param string $slug veterans|young|equipment|scholarship.
+ * @return string
+ */
+function efmsun_direction_image_url( $slug ) {
+	$slug = sanitize_key( $slug );
+	$id   = absint( get_theme_mod( 'efmsun_dir_img_' . $slug, 0 ) );
+	if ( $id ) {
+		$url = wp_get_attachment_image_url( $id, 'large' );
+		if ( $url ) {
+			return $url;
+		}
+	}
+	$path = EFMSUN_DIR . '/assets/img/directions/' . $slug . '.jpg';
+	if ( file_exists( $path ) ) {
+		return EFMSUN_URI . '/assets/img/directions/' . $slug . '.jpg';
+	}
+	return '';
+}
+
 function efmsun_customize_register( WP_Customize_Manager $wp_customize ) {
 	$wp_customize->add_section( 'efmsun_hero', array(
 		'title'    => 'Главная и тексты',
@@ -22,6 +44,30 @@ function efmsun_customize_register( WP_Customize_Manager $wp_customize ) {
 		'title'    => 'Реквизиты и директор',
 		'priority' => 32,
 	) );
+	$wp_customize->add_section( 'efmsun_directions', array(
+		'title'       => 'Картинки направлений',
+		'description' => 'Изображения для блока «Четыре направления фонда» на странице «Проекты». Рекомендуемый размер около 1280×720.',
+		'priority'    => 33,
+	) );
+
+	$direction_images = array(
+		'veterans'    => 'Поддержка преподавателей-ветеранов',
+		'young'       => 'Гранты аспирантам и молодым преподавателям',
+		'equipment'   => 'Обновление оборудования и учебной инфраструктуры',
+		'scholarship' => 'Стипендия курсантам и студентам',
+	);
+	foreach ( $direction_images as $slug => $label ) {
+		$setting_id = 'efmsun_dir_img_' . $slug;
+		$wp_customize->add_setting( $setting_id, array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, $setting_id, array(
+			'label'     => $label,
+			'section'   => 'efmsun_directions',
+			'mime_type' => 'image',
+		) ) );
+	}
 
 	$fields = array(
 		'efmsun_hero'        => array(
@@ -42,17 +88,17 @@ function efmsun_customize_register( WP_Customize_Manager $wp_customize ) {
 		),
 		'efmsun_requisites'  => array(
 			'efmsun_legal_name' => array( 'Полное наименование', 'Фонд целевого капитала МГУ имени адмирала Г.И. Невельского', 'text' ),
-			'efmsun_ogrn'       => array( 'ОГРН', '', 'text' ),
-			'efmsun_inn'        => array( 'ИНН', '', 'text' ),
-			'efmsun_kpp'        => array( 'КПП', '', 'text' ),
-			'efmsun_bank'       => array( 'Банк', 'ПАО Сбербанк', 'text' ),
-			'efmsun_bik'        => array( 'БИК', '', 'text' ),
-			'efmsun_rs'         => array( 'Расчётный счёт', '', 'text' ),
-			'efmsun_ks'         => array( 'Корр. счёт', '', 'text' ),
+			'efmsun_ogrn'       => array( 'ОГРН', '1152500001521', 'text' ),
+			'efmsun_inn'        => array( 'ИНН', '2540215276', 'text' ),
+			'efmsun_kpp'        => array( 'КПП', '254001001', 'text' ),
+			'efmsun_bank'       => array( 'Банк', 'ПАО Сбербанк (Дальневосточный банк ПАО Сбербанк, г. Хабаровск)', 'text' ),
+			'efmsun_bik'        => array( 'БИК', '040813608', 'text' ),
+			'efmsun_rs'         => array( 'Расчётный счёт', '40703810450000001362', 'text' ),
+			'efmsun_ks'         => array( 'Корр. счёт', '30101810600000000608', 'text' ),
 			'efmsun_phone'      => array( 'Телефон', '+7 (984) 211-45-72', 'text' ),
 			'efmsun_email'      => array( 'Почта', 'info@efmsun.ru', 'text' ),
-			'efmsun_address'    => array( 'Адрес', 'Владивосток, ул. Верхнепортовая, 50а', 'text' ),
-			'efmsun_director'   => array( 'Директор (ФИО)', 'Директор фонда (заглушка)', 'text' ),
+			'efmsun_address'    => array( 'Адрес', '690003, Приморский край, г. Владивосток, ул. Верхнепортовая, 50-а', 'text' ),
+			'efmsun_director'   => array( 'Директор (ФИО)', 'Андрей Альбертович Конотоп', 'text' ),
 			'efmsun_dir_role'   => array( 'Должность', 'Директор', 'text' ),
 			'efmsun_dir_phone'  => array( 'Телефон директора', '+7 (984) 211-45-72', 'text' ),
 			'efmsun_dir_email'  => array( 'Почта директора', 'info@efmsun.ru', 'text' ),

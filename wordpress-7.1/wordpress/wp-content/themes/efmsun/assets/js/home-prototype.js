@@ -53,10 +53,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){s
 }
 /* IMPACT MODEL START */
 const IMPACT_ITEMS={
-  veterans:{cost:10000,part:'стоимости одной выплаты помощи',one:'выплата помощи',few:'выплаты помощи',many:'выплат помощи',hint:'Условная стоимость одной выплаты — 10 000 ₽.'},
-  grant:{cost:600000,part:'годовых выплат на руки',one:'год поддержки',few:'года поддержки',many:'лет поддержки',hint:'50 000 ₽ в месяц на руки × 12 = 600 000 ₽ за год.'},
-  equipment:{cost:50000,part:'стоимости одного учебного комплекта',one:'учебный комплект',few:'учебных комплекта',many:'учебных комплектов',hint:'Условная стоимость одного учебного комплекта — 50 000 ₽.'},
-  scholarship:{cost:60000,part:'стоимости годовой стипендии',one:'годовая стипендия',few:'годовые стипендии',many:'годовых стипендий',hint:'Условная стоимость годовой стипендии — 60 000 ₽.'}
+  veterans:{cost:150000,part:'годовой цели поддержки',one:'годовая цель',few:'годовые цели',many:'годовых целей',hint:'Одна условная выплата — 10 000 ₽. Годовая цель — 150 000 ₽.'},
+  grant:{cost:900000,part:'годовой поддержки молодого преподавателя',one:'год поддержки',few:'года поддержки',many:'лет поддержки',hint:'50 000 ₽ в месяц после удержания налогов. Годовая цель — 900 000 ₽ на одного человека.'},
+  equipment:{cost:8000000,part:'годовой цели обновления инфраструктуры',one:'годовая цель',few:'годовые цели',many:'годовых целей',hint:'Один условный комплект — 50 000 ₽. Годовая цель — 8 000 000 ₽.'},
+  scholarship:{cost:60000,part:'стоимости годовой стипендии',one:'годовая стипендия',few:'годовые стипендии',many:'годовых стипендий',hint:'Одна условная годовая стипендия — 60 000 ₽. Годовая цель — 60 000 ₽.'}
 };
 function impactFromDonation(donation,rate){
   const budget=Math.round(donation*rate)/100,items={};
@@ -79,9 +79,15 @@ const numberFormat=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0});
 const money=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(n)+' ₽';
 function parseImpactNumber(id){const raw=$(id).value.trim().replace(/[\s\u00a0\u202f]/g,'').replace(',','.');return /^\d+(?:\.\d+)?$/.test(raw)?Number(raw):NaN;}
 function failImpact(message){$('amountError').textContent=message;$('calcResult').textContent='—';$('resultPeriod').textContent='Проверьте сумму или параметры примера.';$('impactResults').hidden=true;$('calcAmount').setAttribute('aria-invalid','true');}
+function formatImpactPercent(percent){
+  if(percent<=0)return '0 %';
+  if(percent>=100)return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(Math.round(percent))+' %';
+  if(percent<0.1)return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:3}).format(Math.round(percent*1000)/1000)+' %';
+  return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:1}).format(Math.floor(percent*10)/10)+' %';
+}
 function showImpactCard(key,result){const item=IMPACT_ITEMS[key],effect=result.items[key];
   const percent=effect.ratio*100;
-  $(key+'Value').textContent=percent>0&&percent<.1?'< 0,1 %':percent>=100?new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(Math.round(percent))+' %':new Intl.NumberFormat('ru-RU',{maximumFractionDigits:1}).format(Math.floor(percent*10)/10)+' %';
+  $(key+'Value').textContent=formatImpactPercent(percent);
   $(key+'Unit').textContent=item.part;
   $(key+'Remainder').textContent=percent===0?'По этому сценарию дохода на помощь нет.':percent>=100?'Доход покрывает полную условную стоимость помощи.':'Доля условной стоимости, которую может покрыть расчётный доход.';
   $(key+'Bar').style.width=Math.min(100,effect.progress)+'%';$(key+'Progress').setAttribute('aria-valuenow',String(Math.round(Math.min(100,effect.progress)*10)/10));

@@ -36,7 +36,7 @@ $query = new WP_Query( array(
 					<h2>Факт 2025 и План 2026</h2>
 					<p>Фактические показатели 2025 года и план на 2026 год.</p>
 				</div>
-				<a class="btn btn-line" href="<?php echo esc_url( EFMSUN_URI . '/assets/docs/otchet-2025-plan-2026.pdf' ); ?>" download>Скачать PDF</a>
+				<a class="btn btn-line" href="<?php echo esc_url( EFMSUN_URI . '/assets/docs/otchet-2025-plan-2026.pdf' ); ?>" target="_blank" rel="noopener noreferrer">Открыть PDF</a>
 			</article>
 			<?php if ( $query->have_posts() ) : ?>
 				<?php
@@ -53,7 +53,7 @@ $query = new WP_Query( array(
 							<p><?php echo esc_html( get_the_excerpt() ); ?></p>
 						</div>
 						<?php if ( $file ) : ?>
-							<a class="btn btn-line" href="<?php echo esc_url( $file ); ?>">Скачать PDF</a>
+							<a class="btn btn-line" href="<?php echo esc_url( $file ); ?>" target="_blank" rel="noopener noreferrer">Открыть PDF</a>
 						<?php else : ?>
 							<span class="btn btn-line is-disabled">Файл скоро</span>
 						<?php endif; ?>

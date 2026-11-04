@@ -30,7 +30,7 @@ function efmsun_setup() {
 add_action( 'after_setup_theme', 'efmsun_setup' );
 
 function efmsun_favicon() {
-	$icon = EFMSUN_URI . '/assets/img/logo.jpg';
+	$icon = EFMSUN_URI . '/assets/img/logo.jpg?v=0.3.6';
 	echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/jpeg">' . "\n";
 	echo '<link rel="shortcut icon" href="' . esc_url( $icon ) . '" type="image/jpeg">' . "\n";
 	echo '<link rel="apple-touch-icon" href="' . esc_url( $icon ) . '">' . "\n";

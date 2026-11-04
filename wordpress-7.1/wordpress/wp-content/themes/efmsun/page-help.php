@@ -43,19 +43,27 @@ $copy_block = implode( "\n", array_filter( array(
 	$ks ? 'к/с ' . $ks : '',
 ) ) );
 
-$faq = new WP_Query( array(
-	'post_type'      => 'efmsun_faq',
-	'posts_per_page' => 8,
-	'post_status'    => 'publish',
-	'orderby'        => 'menu_order',
-	'order'          => 'ASC',
-	'meta_query'     => array(
+$faq_v5 = include EFMSUN_DIR . '/inc/faq-v5.php';
+if ( ! is_array( $faq_v5 ) ) {
+	$faq_v5 = array();
+}
+$faq_help = array_slice( $faq_v5, 0, 5 );
+foreach ( $faq_help as &$faq_item ) {
+	$faq_item['a'] = str_replace(
 		array(
-			'key'   => 'efmsun_show_on_donate',
-			'value' => '1',
+			'href="#contacts/donation"',
+			'href="#contacts/documents"',
+			'href="#reports"',
 		),
-	),
-) );
+		array(
+			'href="' . esc_url( efmsun_page_url( 'kontakty' ) ) . '"',
+			'href="' . esc_url( efmsun_page_url( 'kontakty' ) ) . '"',
+			'href="' . esc_url( efmsun_page_url( 'otchetnost' ) ) . '"',
+		),
+		$faq_item['a']
+	);
+}
+unset( $faq_item );
 ?>
 
 <section class="page-hero">
@@ -147,7 +155,7 @@ $faq = new WP_Query( array(
 			<h2>Договоры</h2>
 			<p>Шаблон договора пожертвования на пополнение целевого капитала.</p>
 			<p>
-				<a class="btn btn-line" href="<?php echo esc_url( EFMSUN_URI . '/assets/docs/dogovor-pozhertvovaniya.docx' ); ?>" download>Скачать договор (DOCX)</a>
+				<a class="btn btn-line" href="<?php echo esc_url( EFMSUN_URI . '/assets/docs/dogovor-pozhertvovaniya.docx' ); ?>" target="_blank" rel="noopener noreferrer">Открыть договор (DOCX)</a>
 			</p>
 			<p><a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'oferta' ) ); ?>">Читать на сайте</a></p>
 			<h2>Налоговый вычет</h2>
@@ -157,7 +165,7 @@ $faq = new WP_Query( array(
 	</div>
 </section>
 
-<?php if ( $faq->have_posts() ) : ?>
+<?php if ( $faq_help ) : ?>
 <section class="section">
 	<div class="container">
 		<div class="section-head">
@@ -166,16 +174,12 @@ $faq = new WP_Query( array(
 			<a class="text-link" href="<?php echo esc_url( efmsun_page_url( 'faq' ) ); ?>">Все вопросы</a>
 		</div>
 		<div class="faq-list">
-			<?php
-			while ( $faq->have_posts() ) :
-				$faq->the_post();
-				?>
+			<?php foreach ( $faq_help as $faq_item ) : ?>
 				<details class="faq-item">
-					<summary><?php the_title(); ?></summary>
-					<div><?php the_content(); ?></div>
+					<summary><?php echo esc_html( $faq_item['q'] ); ?></summary>
+					<div><?php echo wp_kses_post( wpautop( $faq_item['a'] ) ); ?></div>
 				</details>
-			<?php endwhile; ?>
-			<?php wp_reset_postdata(); ?>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>

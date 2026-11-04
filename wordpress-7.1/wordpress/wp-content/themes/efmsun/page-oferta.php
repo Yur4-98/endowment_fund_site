@@ -17,7 +17,7 @@ $docx    = EFMSUN_URI . '/assets/docs/dogovor-pozhertvovaniya.docx';
 		<h1>Договор пожертвования</h1>
 		<p class="page-lead">Текст договора о пожертвовании на пополнение целевого капитала фонда.</p>
 		<p>
-			<a class="btn btn-line" href="<?php echo esc_url( $docx ); ?>" download>Скачать DOCX</a>
+			<a class="btn btn-line" href="<?php echo esc_url( $docx ); ?>" target="_blank" rel="noopener noreferrer">Открыть DOCX</a>
 		</p>
 	</div>
 </section>
