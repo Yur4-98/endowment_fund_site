@@ -21,7 +21,7 @@ function efmsun_maybe_setup_leyka() {
 	if ( ! efmsun_leyka_active() ) {
 		return;
 	}
-	if ( get_option( 'efmsun_leyka_configured' ) === '2' ) {
+	if ( get_option( 'efmsun_leyka_configured' ) === '4' ) {
 		return;
 	}
 	efmsun_setup_leyka();
@@ -42,13 +42,13 @@ function efmsun_setup_leyka() {
 	update_option( 'leyka_org_face_fio_ip', get_theme_mod( 'efmsun_director', '' ) );
 	update_option( 'leyka_org_face_position', get_theme_mod( 'efmsun_dir_role', 'Директор' ) );
 	update_option( 'leyka_org_address', get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' ) );
-	update_option( 'leyka_org_state_reg_number', get_theme_mod( 'efmsun_ogrn', '' ) );
-	update_option( 'leyka_org_inn', get_theme_mod( 'efmsun_inn', '' ) );
-	update_option( 'leyka_org_kpp', get_theme_mod( 'efmsun_kpp', '' ) );
-	update_option( 'leyka_org_bank_name', get_theme_mod( 'efmsun_bank', 'ПАО Сбербанк' ) );
-	update_option( 'leyka_org_bank_account', get_theme_mod( 'efmsun_rs', '' ) );
-	update_option( 'leyka_org_bank_corr_account', get_theme_mod( 'efmsun_ks', '' ) );
-	update_option( 'leyka_org_bank_bic', get_theme_mod( 'efmsun_bik', '' ) );
+	update_option( 'leyka_org_state_reg_number', get_theme_mod( 'efmsun_ogrn', '1152500001521' ) );
+	update_option( 'leyka_org_inn', get_theme_mod( 'efmsun_inn', '2540215276' ) );
+	update_option( 'leyka_org_kpp', get_theme_mod( 'efmsun_kpp', '254001001' ) );
+	update_option( 'leyka_org_bank_name', get_theme_mod( 'efmsun_bank', 'ПАО Сбербанк (Дальневосточный банк ПАО Сбербанк, г. Хабаровск)' ) );
+	update_option( 'leyka_org_bank_account', get_theme_mod( 'efmsun_rs', '40703810450000001362' ) );
+	update_option( 'leyka_org_bank_corr_account', get_theme_mod( 'efmsun_ks', '30101810600000000608' ) );
+	update_option( 'leyka_org_bank_bic', get_theme_mod( 'efmsun_bik', '040813608' ) );
 
 	$offer = get_page_by_path( 'oferta' );
 	$pd    = get_page_by_path( 'politika-pd' );
@@ -70,9 +70,15 @@ function efmsun_setup_leyka() {
 	update_option( 'leyka_load_scripts_if_need', 1 );
 	update_option( 'leyka_sber_test_mode', 1 );
 
-	$pms = array( 'quittance-bank_order' );
-	if ( get_option( 'leyka_sber_api_login' ) && get_option( 'leyka_sber_api_password' ) ) {
-		array_unshift( $pms, 'sber-card' );
+	// Тестовый интернет-эквайринг Сбера (ecomtest). Для боя заменить в Leyka → Сбер и выключить test_mode.
+	update_option( 'leyka_sber_api_login', 'testMerchant_408' );
+	update_option( 'leyka_sber_api_password', 'Sbertest2026123456' );
+
+	// Только карта Сбера. Квитанция ПД-4 сбивает с толку (иконка Сбера → /leyka-process-donation).
+	// Реквизиты для перевода вручную остаются на /kak-pomoch/.
+	$pms = array( 'sber-card' );
+	if ( ! get_option( 'leyka_sber_api_login' ) || ! get_option( 'leyka_sber_api_password' ) ) {
+		$pms = array( 'quittance-bank_order' );
 	}
 	update_option( 'leyka_pm_available', $pms );
 	update_option( 'leyka_pm_order', 'pm_order[]=' . implode( '&pm_order[]=', $pms ) );
@@ -94,7 +100,7 @@ function efmsun_setup_leyka() {
 		update_option( 'efmsun_leyka_rewrites', '1' );
 	}
 
-	update_option( 'efmsun_leyka_configured', '2' );
+	update_option( 'efmsun_leyka_configured', '4' );
 }
 
 function efmsun_leyka_ensure_campaign() {

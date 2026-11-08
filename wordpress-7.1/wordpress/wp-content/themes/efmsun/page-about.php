@@ -55,7 +55,7 @@ $board_managing = array(
 		<section class="section about-frank" aria-labelledby="frank-title">
 			<p class="eyebrow">Обращение</p>
 			<h2 id="frank-title" style="margin-top:12px">Дорогие друзья, коллеги!</h2>
-			<p class="frank-role">Почётный президент и глава Попечительского совета МГУ им. адм. Г.И. Невельского — С.О.&nbsp;Франк</p>
+			<p class="frank-role">Почётный президент и первый председатель Попечительского совета МГУ им. адм. Г.И. Невельского — С.О.&nbsp;Франк</p>
 			<p class="copy">Убеждён, что и выпускникам ДВВИМУ, ДВГМА, МГУ им. адмирала Г.И. Невельского и многим другим неравнодушным друзьям и партнёрам Университета, руководителям предприятий транспортной и других отраслей небезразличны перспективы развития Университета и отечественного морского образования.</p>
 			<p class="copy">Подготовка специалистов морской отрасли в настоящее время невозможна без привлечения дополнительных ресурсов и объединения усилий государства, судоходного сообщества и гражданского общества.</p>
 			<p class="copy">Уже несколько лет работает Фонд целевого капитала МГУ им. адмирала Г.И. Невельского. За это время целевой капитал Фонда вырос и продолжает пополняться выпускниками и компаниями-партнёрами.</p>
@@ -67,7 +67,7 @@ $board_managing = array(
 			<p class="frank-sign">
 				С уважением,<br>
 				Почётный президент,<br>
-				Председатель Попечительского совета<br>
+				Первый председатель Попечительского совета<br>
 				МГУ им. адм. Г.И. Невельского<br>
 				С.О.&nbsp;Франк
 			</p>
@@ -110,20 +110,6 @@ $board_managing = array(
 			<div class="grid3">
 				<div class="panel governance">
 					<span class="index">01</span>
-					<h3>Попечительский совет</h3>
-					<p>Контролирует использование целевого капитала: согласует финансовый план, цели и получателей дохода.</p>
-					<p class="governance-note">Утверждён Управляющим советом 24 марта 2020 г. (протокол №&nbsp;3/2020)</p>
-					<details class="governance-members">
-						<summary>Состав совета</summary>
-						<ul class="governance-list">
-							<?php foreach ( $board_trustees as $member ) : ?>
-								<li><?php echo esc_html( $member ); ?></li>
-							<?php endforeach; ?>
-						</ul>
-					</details>
-				</div>
-				<div class="panel governance">
-					<span class="index">02</span>
 					<h3>Управляющий совет</h3>
 					<p>Определяет управляющую компанию, утверждает финансовый план и отчётность, назначает директора.</p>
 					<p class="governance-note">Утверждён решением Учредителя №&nbsp;4 от 10 ноября 2023 года</p>
@@ -131,6 +117,20 @@ $board_managing = array(
 						<summary>Состав совета</summary>
 						<ul class="governance-list">
 							<?php foreach ( $board_managing as $member ) : ?>
+								<li><?php echo esc_html( $member ); ?></li>
+							<?php endforeach; ?>
+						</ul>
+					</details>
+				</div>
+				<div class="panel governance">
+					<span class="index">02</span>
+					<h3>Попечительский совет</h3>
+					<p>Контролирует использование целевого капитала: согласует финансовый план, цели и получателей дохода.</p>
+					<p class="governance-note">Утверждён Управляющим советом 24 марта 2020 г. (протокол №&nbsp;3/2020)</p>
+					<details class="governance-members">
+						<summary>Состав совета</summary>
+						<ul class="governance-list">
+							<?php foreach ( $board_trustees as $member ) : ?>
 								<li><?php echo esc_html( $member ); ?></li>
 							<?php endforeach; ?>
 						</ul>
@@ -145,7 +145,7 @@ $board_managing = array(
 					<p><a class="link" href="<?php echo esc_url( efmsun_page_url( 'kontakty' ) ); ?>">Контакты директора</a></p>
 				</div>
 			</div>
-			<p class="copy" style="margin-top:28px">Целевой капитал с декабря 2016 года находится в доверительном управлении АО «Газпромбанк — Управление активами» (<a href="https://aaacapital.ru/" target="_blank" rel="noopener noreferrer">aaacapital.ru</a>).</p>
+			<p class="copy" style="margin-top:28px">Целевой капитал с декабря 2016 года находится в доверительном управлении <a href="https://aaacapital.ru/" target="_blank" rel="noopener noreferrer">АО «Газпромбанк — Управление активами»</a>.</p>
 		</section>
 
 		<section class="section">

@@ -2,6 +2,18 @@
 'use strict';
 function ready(fn){ if(document.readyState!=='loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
 ready(function () {
+function syncHeroLogo(){
+	const wrap=document.querySelector('.hero-title-logo-wrap');
+	const title=document.querySelector('.hero-title-block .official-title');
+	if(!wrap||!title) return;
+	const h=Math.round(title.getBoundingClientRect().height);
+	if(h<1) return;
+	wrap.style.width=h+'px';
+	wrap.style.height=h+'px';
+}
+syncHeroLogo();
+window.addEventListener('resize',syncHeroLogo);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(syncHeroLogo);
 if (!document.getElementById('heroShip') && !document.getElementById('programTrack')) return;
 const $=id=>document.getElementById(id);
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');

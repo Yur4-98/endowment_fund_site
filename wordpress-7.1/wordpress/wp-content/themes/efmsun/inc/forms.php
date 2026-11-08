@@ -70,7 +70,7 @@ function efmsun_form_notice( $query = 'form' ) {
 		return;
 	}
 	if ( 'ok' === $_GET[ $query ] ) {
-		echo '<p class="form-ok">Сообщение отправлено. Фонд ответит на указанную почту.</p>';
+		echo '<p class="form-ok">Сообщение отправлено. Вам ответят на указанную почту.</p>';
 	} elseif ( 'error' === $_GET[ $query ] ) {
 		echo '<p class="form-error">Заполните обязательные поля.</p>';
 	}

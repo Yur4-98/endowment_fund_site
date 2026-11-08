@@ -21,15 +21,15 @@ $methods = array(
 	array( 'Банковский перевод', 'Для физлиц и юрлиц. Реквизиты можно скопировать ниже.', true, '' ),
 );
 
-$inn  = get_theme_mod( 'efmsun_inn', '' );
-$kpp  = get_theme_mod( 'efmsun_kpp', '' );
-$ogrn = get_theme_mod( 'efmsun_ogrn', '' );
-$rs   = get_theme_mod( 'efmsun_rs', '' );
-$ks   = get_theme_mod( 'efmsun_ks', '' );
-$bik  = get_theme_mod( 'efmsun_bik', '' );
-$bank = get_theme_mod( 'efmsun_bank', 'ПАО Сбербанк' );
-$name = get_theme_mod( 'efmsun_legal_name', 'Фонд целевого капитала МГУ имени адмирала Г.И. Невельского' );
-$addr = get_theme_mod( 'efmsun_address', 'Владивосток, ул. Верхнепортовая, 50а' );
+$inn  = get_theme_mod( 'efmsun_inn' ) ?: '2540215276';
+$kpp  = get_theme_mod( 'efmsun_kpp' ) ?: '254001001';
+$ogrn = get_theme_mod( 'efmsun_ogrn' ) ?: '1152500001521';
+$rs   = get_theme_mod( 'efmsun_rs' ) ?: '40703810450000001362';
+$ks   = get_theme_mod( 'efmsun_ks' ) ?: '30101810600000000608';
+$bik  = get_theme_mod( 'efmsun_bik' ) ?: '040813608';
+$bank = get_theme_mod( 'efmsun_bank' ) ?: 'ПАО Сбербанк (Дальневосточный банк ПАО Сбербанк, г. Хабаровск)';
+$name = get_theme_mod( 'efmsun_legal_name' ) ?: 'Фонд целевого капитала МГУ имени адмирала Г.И. Невельского';
+$addr = get_theme_mod( 'efmsun_address' ) ?: '690003, Приморский край, г. Владивосток, ул. Верхнепортовая, 50-а';
 
 $copy_block = implode( "\n", array_filter( array(
 	$name,
@@ -149,7 +149,6 @@ unset( $faq_item );
 			<p>
 				<button class="btn btn-line" type="button" data-copy="<?php echo esc_attr( $copy_block ); ?>" data-label="Скопировать реквизиты">Скопировать реквизиты</button>
 			</p>
-			<p class="form-note">Пустые поля заполняются в «Внешний вид → Настроить → Реквизиты и директор».</p>
 		</div>
 		<aside class="card card-plain">
 			<h2>Договоры</h2>

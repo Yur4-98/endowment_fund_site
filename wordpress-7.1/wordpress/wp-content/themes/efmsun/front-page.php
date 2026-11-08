@@ -50,7 +50,23 @@ $contacts_url = efmsun_page_url( 'kontakty' );
 		</div>
 		<div class="hero-grid">
 			<div class="hero-copy">
-				<h1 class="official-title" id="heroTitle">Фонд целевого капитала<br>МГУ имени адмирала Г.И.&nbsp;Невельского</h1>
+				<div class="hero-title-block">
+					<span class="hero-title-logo-wrap" aria-hidden="true">
+						<img
+							class="hero-title-logo"
+							src="<?php echo esc_url( EFMSUN_URI . '/assets/img/logo-hero.png?v=' . EFMSUN_VERSION ); ?>"
+							alt=""
+							width="140"
+							height="140"
+							decoding="async"
+						>
+					</span>
+					<h1 class="official-title" id="heroTitle">
+						<span class="title-line">Фонд целевого капитала</span>
+						<span class="title-line">МГУ имени адмирала</span>
+						<span class="title-line">Г.И.&nbsp;Невельского</span>
+					</h1>
+				</div>
 				<p><?php echo esc_html( $text ); ?></p>
 				<div class="hero-actions">
 					<a class="btn" href="<?php echo esc_url( $help_url ); ?>">Поддержать фонд</a>

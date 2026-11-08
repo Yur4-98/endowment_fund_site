@@ -30,10 +30,12 @@ function efmsun_setup() {
 add_action( 'after_setup_theme', 'efmsun_setup' );
 
 function efmsun_favicon() {
-	$icon = EFMSUN_URI . '/assets/img/logo.jpg?v=0.3.6';
-	echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/jpeg">' . "\n";
-	echo '<link rel="shortcut icon" href="' . esc_url( $icon ) . '" type="image/jpeg">' . "\n";
-	echo '<link rel="apple-touch-icon" href="' . esc_url( $icon ) . '">' . "\n";
+	$icon   = EFMSUN_URI . '/assets/img/favicon.png?v=0.3.19';
+	$icon32 = EFMSUN_URI . '/assets/img/favicon-32.png?v=0.3.19';
+	$apple  = EFMSUN_URI . '/assets/img/apple-touch-icon.png?v=0.3.19';
+	echo '<link rel="icon" href="' . esc_url( $icon32 ) . '" type="image/png" sizes="32x32">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/png" sizes="240x240">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( $apple ) . '" sizes="180x180">' . "\n";
 }
 add_action( 'wp_head', 'efmsun_favicon', 1 );
 

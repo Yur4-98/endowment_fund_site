@@ -160,20 +160,20 @@ h1, h2, h3, .brand-name, .hero-rotator, .hero-quote {
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   flex: none;
   display: block;
   border-radius: 50%;
   overflow: hidden;
-  background: #0a2744;
+  background: transparent;
 }
 
 .brand-mark img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .brand-text { flex-direction: column; align-items: flex-start; gap: 2px; }
@@ -821,7 +821,7 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 
 .impact-cost {
   margin: 0 0 10px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #b42318;
 }
@@ -831,33 +831,22 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
 }
 
 .about-frank {
-  width: min(1440px, calc(100vw - 48px));
-  max-width: none;
-  margin: 0 auto 40px;
-  padding: 36px 0 16px;
+  margin: 0 0 40px;
+  padding: 28px 0 8px;
   border-top: 1px solid var(--line, #d5dfe2);
-  text-align: center;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  max-width: none;
 }
 
 .about-frank .eyebrow {
   margin-bottom: 12px;
 }
 
-.about-frank h2 {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .about-frank .frank-role {
   margin: 0 0 18px;
   max-width: none;
-  width: 100%;
   color: var(--muted, #536c7b);
   font-size: 15px;
-  text-align: left;
 }
 
 .about-frank.section p.copy,
@@ -865,17 +854,14 @@ h3 { font-size: 1.45rem; margin: 0 0 8px; }
   margin: 0 0 14px;
   max-width: none !important;
   width: 100%;
-  text-align: left;
 }
 
 .about-frank .frank-sign {
   margin: 22px 0 0;
   max-width: none;
-  width: 100%;
   color: var(--muted, #536c7b);
   font-size: 15px;
   line-height: 1.45;
-  text-align: left;
 }
 
 .leyka-form-wrap {
